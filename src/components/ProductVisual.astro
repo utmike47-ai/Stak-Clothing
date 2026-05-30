@@ -1,0 +1,67 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const imageClass =
+  product.variant === 'tee'
+    ? 'product-tee'
+    : product.variant === 'hat'
+      ? 'product-hat'
+      : 'product-bone';
+---
+<div class={`product-image ${imageClass}`}>
+  <div class="garment-tag">{product.tag}</div>
+  {product.variant === 'tee' && (
+    <svg viewBox="0 0 300 360" class="tee-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="teeGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#cdb4a7" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#8a7368" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M70 60 L110 40 Q150 75 190 40 L230 60 L270 100 L240 130 L230 120 L230 320 Q230 335 215 335 L85 335 Q70 335 70 320 L70 120 L60 130 L30 100 Z" fill="url(#teeGrad)" stroke="#3a3128" stroke-width="0.5"/>
+      <path d="M110 40 Q150 75 190 40" fill="none" stroke="#3a3128" stroke-width="1" opacity="0.4"/>
+      <g transform="translate(150 175)">
+        <rect x="-18" y="-18" width="36" height="36" fill="none" stroke="#2a221c" stroke-width="1.2"/>
+        <line x1="0" y1="-18" x2="0" y2="18" stroke="#2a221c" stroke-width="1.2"/>
+        <line x1="-18" y1="0" x2="18" y2="0" stroke="#2a221c" stroke-width="1.2"/>
+        <text x="-9" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="8" fill="#2a221c">S</text>
+        <text x="9" y="-3" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="8" fill="#2a221c">T</text>
+        <text x="-9" y="13" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="8" fill="#2a221c">A</text>
+        <text x="9" y="13" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="8" fill="#2a221c">K</text>
+      </g>
+    </svg>
+  )}
+  {product.variant === 'hat' && (
+    <svg viewBox="0 0 300 360" class="hat-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="hatGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8a6a4f" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#5a4530" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="150" cy="240" rx="135" ry="22" fill="#3a2e22" opacity="0.6"/>
+      <path d="M50 240 Q50 130 150 130 Q250 130 250 240 Z" fill="url(#hatGrad)"/>
+      <path d="M30 240 Q30 230 50 228 L250 228 Q270 230 270 240 Q270 252 250 254 L50 254 Q30 252 30 240 Z" fill="url(#hatGrad)"/>
+      <path d="M50 240 Q50 130 150 130 Q250 130 250 240" fill="none" stroke="#2a1f15" stroke-width="0.8" opacity="0.5"/>
+      <text x="150" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-weight="500" font-size="22" fill="#f5ecd7" letter-spacing="-1">stak</text>
+      <line x1="50" y1="180" x2="250" y2="180" stroke="#2a1f15" stroke-width="0.5" opacity="0.3"/>
+    </svg>
+  )}
+  {product.variant === 'bone' && (
+    <svg viewBox="0 0 300 360" class="tee-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="teeGrad2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f5ecd7" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#d8caa8" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M70 60 L110 40 Q150 75 190 40 L230 60 L270 100 L240 130 L230 120 L230 320 Q230 335 215 335 L85 335 Q70 335 70 320 L70 120 L60 130 L30 100 Z" fill="url(#teeGrad2)" stroke="#6b543c" stroke-width="0.4"/>
+      <path d="M110 40 Q150 75 190 40" fill="none" stroke="#6b543c" stroke-width="1" opacity="0.3"/>
+      <text x="150" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-weight="500" font-size="26" fill="#6b543c" letter-spacing="-1">stak</text>
+    </svg>
+  )}
+</div>

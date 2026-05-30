@@ -1,0 +1,15 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = 'grid-mark' } = Astro.props;
+---
+<svg viewBox="0 0 40 40" class={className} aria-hidden="true">
+  <rect x="0.75" y="0.75" width="38.5" height="38.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="20" y1="0.75" x2="20" y2="39.25" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="0.75" y1="20" x2="39.25" y2="20" stroke="currentColor" stroke-width="1.5"/>
+  <text x="10" y="15" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" fill="currentColor">S</text>
+  <text x="30" y="15" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" fill="currentColor">T</text>
+  <text x="10" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" fill="currentColor">A</text>
+  <text x="30" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="10" fill="currentColor">K</text>
+</svg>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductVisual from '../../components/ProductVisual.astro';
+import { products, getProduct } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+<BaseLayout
+  title={product.name}
+  description={product.description}
+>
+  <main>
+    <section class="page-hero" style="padding-bottom: 40px;">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/shop">Shop</a>
+        <span>/</span>
+        <span>{product.name}</span>
+      </nav>
+    </section>
+
+    <div class="product-detail">
+      <div class="product-detail-media">
+        <ProductVisual product={product} />
+        {product.badge === 'dropped' && <div class="product-badge" style="position:absolute;top:18px;right:18px;">Just Dropped</div>}
+        {product.badge === 'soon' && <div class="product-badge product-badge-soon" style="position:absolute;top:18px;right:18px;">Coming Soon</div>}
+      </div>
+
+      <div class="product-detail-info">
+        <p class="eyebrow">Drop 001 · No. {product.tag}</p>
+        <h1>{product.name}</h1>
+        <p class="product-detail-price">${product.price}</p>
+        <p class="product-meta">{product.meta}</p>
+        <p class={`product-stock ${product.stockType === 'soon' ? 'product-stock-soon' : ''}`}>
+          {product.stockType === 'live' && <span class="dot-live"></span>}
+          {product.stock}
+        </p>
+        <p class="product-detail-desc">{product.description}</p>
+        <ul class="product-detail-list">
+          {product.details.map((detail) => <li>{detail}</li>)}
+        </ul>
+        <div class="product-detail-actions">
+          {product.available ? (
+            <button type="button" class="btn btn-primary" data-add-to-cart>
+              Add to Cart — ${product.price}
+            </button>
+          ) : (
+            <button type="button" class="btn btn-primary btn-disabled" disabled>
+              Coming Soon
+            </button>
+          )}
+          <a href="/#drop" class="btn btn-ghost-dark">Back to Drop 001</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

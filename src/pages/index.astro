@@ -1,0 +1,326 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products, journalPosts } from "../data/products";
+---
+<BaseLayout title="STAK">
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-layer hero-layer-1"></div>
+      <div class="hero-layer hero-layer-2"></div>
+      <div class="hero-noise"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="eyebrow fade-in">Drop 001 — Austin, Texas</p>
+      <h1 class="hero-title fade-in" style="--delay:.1s">
+        Style That<br/>Always Keeps.
+      </h1>
+      <p class="hero-sub fade-in" style="--delay:.2s">
+        Built for the in-between. Texas to California.<br/>
+        Mountains to coast. Whatever the day holds.
+      </p>
+      <div class="hero-cta fade-in" style="--delay:.3s">
+        <a href="#drop" class="btn btn-primary">Shop Drop 001</a>
+        <a href="#story" class="btn btn-ghost">Our Story →</a>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <div><span class="meta-label">No.</span><span class="meta-value">001</span></div>
+      <div><span class="meta-label">Made</span><span class="meta-value">24</span></div>
+      <div><span class="meta-label">Est.</span><span class="meta-value">2026</span></div>
+    </div>
+
+    <a href="#story" class="scroll-indicator" aria-label="Scroll">
+      <span>Scroll</span>
+      <span class="scroll-line"></span>
+    </a>
+  </section>
+
+  <!-- MARQUEE STRIP -->
+  <section class="strip">
+    <div class="strip-track">
+      <span>Limited Runs</span><span class="dot">✦</span>
+      <span>Real Places</span><span class="dot">✦</span>
+      <span>Made to Last</span><span class="dot">✦</span>
+      <span>Austin, TX</span><span class="dot">✦</span>
+      <span>Limited Runs</span><span class="dot">✦</span>
+      <span>Real Places</span><span class="dot">✦</span>
+      <span>Made to Last</span><span class="dot">✦</span>
+      <span>Austin, TX</span><span class="dot">✦</span>
+      <span>Limited Runs</span><span class="dot">✦</span>
+      <span>Real Places</span><span class="dot">✦</span>
+      <span>Made to Last</span><span class="dot">✦</span>
+      <span>Austin, TX</span><span class="dot">✦</span>
+    </div>
+  </section>
+  <!-- STORY / MANIFESTO -->
+  <section class="story" id="story">
+    <div class="story-grid">
+      <div class="story-image">
+        <div class="story-art">
+          <svg viewBox="0 0 400 500" class="story-svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f0c896"/>
+                <stop offset="40%" stop-color="#d89968"/>
+                <stop offset="70%" stop-color="#8a5a3a"/>
+                <stop offset="100%" stop-color="#2a1c14"/>
+              </linearGradient>
+              <radialGradient id="sunGrad" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0%" stop-color="#fff2d4"/>
+                <stop offset="50%" stop-color="#f0a868"/>
+                <stop offset="100%" stop-color="#c4683a"/>
+              </radialGradient>
+              <linearGradient id="mtnBackGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6a4a30"/>
+                <stop offset="100%" stop-color="#3a2818"/>
+              </linearGradient>
+              <linearGradient id="mtnFrontGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3a2818"/>
+                <stop offset="100%" stop-color="#1a1208"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#skyGrad)"/>
+            <circle cx="280" cy="160" r="42" fill="url(#sunGrad)" opacity="0.95"/>
+            <circle cx="280" cy="160" r="68" fill="#f0a868" opacity="0.08"/>
+            <!-- Background mountain layer -->
+            <path d="M0 360 L40 300 L90 330 L140 260 L200 310 L250 240 L310 290 L360 250 L400 280 L400 500 L0 500 Z" fill="url(#mtnBackGrad)" opacity="0.85"/>
+            <!-- Front mountain layer -->
+            <path d="M0 420 L60 360 L120 400 L180 330 L240 380 L290 340 L340 380 L400 350 L400 500 L0 500 Z" fill="url(#mtnFrontGrad)"/>
+            <!-- Foreground / desert floor -->
+            <path d="M0 460 L400 450 L400 500 L0 500 Z" fill="#1a1208"/>
+            <!-- Cactus 1 -->
+            <g transform="translate(80 380)">
+              <rect x="-5" y="-30" width="10" height="70" rx="4" fill="#0a0805"/>
+              <rect x="-15" y="-10" width="7" height="22" rx="3" fill="#0a0805"/>
+              <rect x="8" y="-5" width="7" height="26" rx="3" fill="#0a0805"/>
+              <rect x="-18" y="-12" width="5" height="8" rx="2" fill="#0a0805"/>
+              <rect x="13" y="-7" width="5" height="10" rx="2" fill="#0a0805"/>
+            </g>
+            <!-- Cactus 2 (smaller) -->
+            <g transform="translate(320 410)">
+              <rect x="-3" y="-22" width="6" height="50" rx="2" fill="#0a0805"/>
+              <rect x="-10" y="-8" width="5" height="14" rx="2" fill="#0a0805"/>
+              <rect x="5" y="-4" width="5" height="16" rx="2" fill="#0a0805"/>
+            </g>
+            <!-- Cactus 3 (mid) -->
+            <g transform="translate(180 405)" opacity="0.9">
+              <rect x="-4" y="-26" width="8" height="58" rx="3" fill="#0a0805"/>
+              <rect x="-12" y="-10" width="6" height="18" rx="2" fill="#0a0805"/>
+            </g>
+          </svg>
+          <div class="story-art-label">
+            <span>Austin → Malibu</span>
+            <span>1,476 mi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-text">
+        <p class="eyebrow">Chapter One</p>
+        <h2 class="display">
+          Built for the<br/>
+          <em>in-between.</em>
+        </h2>
+        <p class="lede">
+          The morning meeting and the desert detour. The city block and the canyon road. STAK is for the day that keeps shifting on you.
+        </p>
+        <p>
+          We make small runs of essential menswear in Austin, Texas — built from heavyweight cottons, garment-dyed for character, and finished with details that hold up after the hundredth wash. No seasonal noise. No trend chasing. Just pieces you'll reach for first.
+        </p>
+        <a href="#drop" class="link-underline">See what we made →</a>
+      </div>
+    </div>
+  </section>
+  <section class="drop" id="drop">
+    <div class="drop-header">
+      <div>
+        <p class="eyebrow">Drop 001</p>
+        <h2 class="display">The First Run.</h2>
+      </div>
+      <p class="drop-blurb">
+        Two pieces. Twenty-four of each. Dyed in small batches in Texas — when they're gone, they're gone.
+      </p>
+    </div>
+    <div class="products" id="shop">
+      {products.map((product) => <ProductCard product={product} />)}
+    </div>
+  </section>
+  <!-- LIFESTYLE / EDITORIAL -->
+  <section class="editorial">
+    <div class="editorial-header">
+      <p class="eyebrow">Worn here</p>
+      <h2 class="display">From one to the other.</h2>
+      <p class="editorial-sub">Drop 001 was shot across four places between Austin and Malibu. Real days. Real light. No retouching.</p>
+    </div>
+    <div class="editorial-grid">
+
+      <article class="ed-card ed-card-tall ed-austin">
+        <div class="ed-stamp">
+          <span class="ed-num">No. 01</span>
+          <span class="ed-dot">●</span>
+        </div>
+        <div class="ed-place-wrap">
+          <h3 class="ed-place">Austin</h3>
+          <span class="ed-region">Texas, USA</span>
+        </div>
+        <div class="ed-meta">
+          <div><span>30.27° N</span><span>97.74° W</span></div>
+          <div class="ed-shot">35mm · Morning</div>
+        </div>
+        <svg class="ed-glyph" viewBox="0 0 200 80" aria-hidden="true">
+          <path d="M0 80 L0 50 L18 50 L18 30 L32 30 L32 50 L50 50 L50 20 L65 20 L65 50 L82 50 L82 8 L98 8 L98 50 L115 50 L115 35 L132 35 L132 50 L150 50 L150 25 L168 25 L168 50 L185 50 L185 45 L200 45 L200 80 Z" fill="currentColor" opacity="0.7"/>
+        </svg>
+      </article>
+
+      <article class="ed-card ed-colorado">
+        <div class="ed-stamp">
+          <span class="ed-num">No. 02</span>
+          <span class="ed-dot">●</span>
+        </div>
+        <div class="ed-place-wrap">
+          <h3 class="ed-place">Boulder</h3>
+          <span class="ed-region">Colorado, USA</span>
+        </div>
+        <div class="ed-meta">
+          <div><span>40.01° N</span><span>105.27° W</span></div>
+          <div class="ed-shot">35mm · Noon</div>
+        </div>
+        <svg class="ed-glyph" viewBox="0 0 200 80" aria-hidden="true">
+          <path d="M0 80 L0 60 L35 18 L65 50 L95 12 L130 55 L160 25 L200 65 L200 80 Z" fill="currentColor" opacity="0.55"/>
+          <path d="M0 80 L30 38 L60 60 L100 30 L140 65 L170 40 L200 70 L200 80 Z" fill="currentColor" opacity="0.85"/>
+        </svg>
+      </article>
+
+      <article class="ed-card ed-malibu">
+        <div class="ed-stamp">
+          <span class="ed-num">No. 03</span>
+          <span class="ed-dot">●</span>
+        </div>
+        <div class="ed-place-wrap">
+          <h3 class="ed-place">Malibu</h3>
+          <span class="ed-region">California, USA</span>
+        </div>
+        <div class="ed-meta">
+          <div><span>34.02° N</span><span>118.78° W</span></div>
+          <div class="ed-shot">35mm · Golden Hour</div>
+        </div>
+        <svg class="ed-glyph" viewBox="0 0 200 80" aria-hidden="true">
+          <circle cx="150" cy="22" r="14" fill="currentColor" opacity="0.6"/>
+          <path d="M0 80 L0 55 Q50 48 100 55 T200 55 L200 80 Z" fill="currentColor" opacity="0.7"/>
+          <path d="M0 80 L0 65 Q50 58 100 65 T200 65 L200 80 Z" fill="currentColor" opacity="0.9"/>
+        </svg>
+      </article>
+
+      <article class="ed-card ed-card-tall ed-desert">
+        <div class="ed-stamp">
+          <span class="ed-num">No. 04</span>
+          <span class="ed-dot">●</span>
+        </div>
+        <div class="ed-place-wrap">
+          <h3 class="ed-place">Marfa</h3>
+          <span class="ed-region">Texas, USA</span>
+        </div>
+        <div class="ed-meta">
+          <div><span>30.31° N</span><span>104.02° W</span></div>
+          <div class="ed-shot">35mm · Dusk</div>
+        </div>
+        <svg class="ed-glyph" viewBox="0 0 200 80" aria-hidden="true">
+          <g fill="currentColor" opacity="0.75">
+            <rect x="92" y="20" width="10" height="55" rx="4"/>
+            <rect x="80" y="35" width="6" height="22" rx="3"/>
+            <rect x="108" y="30" width="6" height="28" rx="3"/>
+            <rect x="78" y="32" width="4" height="10" rx="2"/>
+            <rect x="112" y="27" width="4" height="12" rx="2"/>
+          </g>
+          <line x1="0" y1="75" x2="200" y2="75" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+        </svg>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- VALUES / PILLARS -->
+  <section class="pillars">
+    <div class="pillars-header">
+      <p class="eyebrow">The Standard</p>
+      <h2 class="display">Three things, done right.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <svg viewBox="0 0 60 60" class="pillar-icon" aria-hidden="true">
+          <path d="M5 50 L20 25 L30 35 L42 18 L55 50 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="45" cy="15" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <h3>Limited Runs</h3>
+        <p>We make 24 of each piece, then we move on. No restocks, no archive sales. When it's gone, it's part of someone's story.</p>
+      </div>
+      <div class="pillar">
+        <svg viewBox="0 0 60 60" class="pillar-icon" aria-hidden="true">
+          <circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M30 8 L30 52 M8 30 L52 30" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M30 30 L42 18 L36 36 Z" fill="currentColor" opacity="0.6"/>
+        </svg>
+        <h3>Real Places</h3>
+        <p>Every drop is shot in a real place, on a real person, on a real day. No studios, no stylists. The clothes earn the catalog.</p>
+      </div>
+      <div class="pillar">
+        <svg viewBox="0 0 60 60" class="pillar-icon" aria-hidden="true">
+          <rect x="12" y="12" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M12 30 L48 30 M30 12 L30 48" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="30" cy="30" r="5" fill="currentColor"/>
+        </svg>
+        <h3>Made to Last</h3>
+        <p>Heavyweight cottons, double-needle stitching, garment-dyed for depth. The kind of build that gets better with the years on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNAL / EDITORIAL -->
+  <section class="journal" id="journal">
+    <div class="journal-header">
+      <div>
+        <p class="eyebrow">The Journal</p>
+        <h2 class="display">Field notes.</h2>
+      </div>
+      <a href="/journal" class="link-underline">All entries →</a>
+    </div>
+
+    <div class="journal-grid">
+      {journalPosts.map((post) => (
+        <article class="journal-card">
+          <a href={`/journal/${post.slug}`}>
+            <div class={`journal-art ${post.artClass}`}></div>
+          </a>
+          <div class="journal-meta">
+            <span>{post.date}</span>
+            <span>·</span>
+            <span>{post.readTime}</span>
+          </div>
+          <h3><a href={`/journal/${post.slug}`}>{post.title}</a></h3>
+          <p>{post.excerpt}</p>
+          <a href={`/journal/${post.slug}`} class="link-underline-sm">Read →</a>
+        </article>
+      ))}
+    </div>
+  </section>
+  <!-- NEWSLETTER -->
+  <section class="signup" id="signup">
+    <div class="signup-inner">
+      <p class="eyebrow eyebrow-light">Stay in the loop</p>
+      <h2 class="display display-light">Be first when the next one drops.</h2>
+      <p class="signup-sub">Drops are small. We tell our list first — usually 48 hours before anyone else.</p>
+      <form class="signup-form">
+        <input type="email" required placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Notify Me</button>
+      </form>
+      <p class="signup-status" aria-live="polite"></p>
+      <p class="signup-fine">No spam. Unsubscribe in one click.</p>
+    </div>
+  </section>
+</main>
+</BaseLayout>

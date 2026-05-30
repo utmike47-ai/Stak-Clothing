@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products } from '../../data/products';
+---
+<BaseLayout
+  title="Shop"
+  description="Shop Drop 001 from STAK — limited runs of essential menswear from Austin, Texas."
+>
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Shop</p>
+      <h1 class="display">Drop 001.</h1>
+      <p class="page-hero-sub">
+        Two pieces in stock. One on the way. Twenty-four of each — dyed in small batches in Texas.
+      </p>
+    </section>
+
+    <section class="drop" style="padding-top: 0;">
+      <div class="products" style="padding-bottom: 140px;">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

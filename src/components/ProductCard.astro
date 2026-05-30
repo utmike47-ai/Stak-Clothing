@@ -1,0 +1,27 @@
+---
+import type { Product } from '../data/products';
+import ProductVisual from './ProductVisual.astro';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+---
+<article class="product">
+  <a href={`/shop/${product.slug}`} class="product-media">
+    <ProductVisual product={product} />
+    {product.badge === 'dropped' && <div class="product-badge">Just Dropped</div>}
+    {product.badge === 'soon' && <div class="product-badge product-badge-soon">Coming Soon</div>}
+  </a>
+  <div class="product-info">
+    <div class="product-row">
+      <h3><a href={`/shop/${product.slug}`}>{product.name}</a></h3>
+      <span class="price">${product.price}</span>
+    </div>
+    <p class="product-meta">{product.meta}</p>
+    <p class={`product-stock ${product.stockType === 'soon' ? 'product-stock-soon' : ''}`}>
+      {product.stockType === 'live' && <span class="dot-live"></span>}
+      {product.stock}
+    </p>
+  </div>
+</article>

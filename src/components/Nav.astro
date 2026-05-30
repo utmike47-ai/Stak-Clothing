@@ -1,0 +1,63 @@
+---
+import LogoMark from './LogoMark.astro';
+
+const { pathname } = Astro.url;
+const isHome = pathname === '/';
+const link = (hash: string) => (isHome ? hash : `/${hash}`);
+---
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-start">
+      <button
+        type="button"
+        class="nav-toggle"
+        data-menu-open
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+      <nav class="nav-left" aria-label="Primary">
+        <a href={link('#shop')}>Shop</a>
+        <a href={link('#drop')}>Drop 001</a>
+        <a href={link('#story')}>Story</a>
+        <a href="/journal">Journal</a>
+      </nav>
+    </div>
+
+    <a href="/" class="nav-logo" aria-label="STAK home">
+      <LogoMark />
+    </a>
+
+    <nav class="nav-right" aria-label="Account">
+      <a href="/shop" aria-label="Shop all">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </a>
+      <a href="mailto:hello@staksupply.co" aria-label="Contact">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </a>
+      <a href="#cart" class="cart-link" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 7h14l-1.5 12a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8L5 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-panel">
+    <button type="button" class="mobile-menu-close" data-menu-close aria-label="Close menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 6l12 12M18 6 6 18"/>
+      </svg>
+    </button>
+    <a href={link('#shop')}>Shop</a>
+    <a href={link('#drop')}>Drop 001</a>
+    <a href={link('#story')}>Story</a>
+    <a href="/journal">Journal</a>
+    <a href="/shop">All products</a>
+  </div>
+</div>
