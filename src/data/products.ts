@@ -10,14 +10,14 @@ export interface Product {
   description: string;
   details: string[];
   available: boolean;
-  variant: 'tee' | 'hat' | 'bone';
+  variant: 'tee' | 'hat';
 }
 
 export const products: Product[] = [
   {
     slug: 'drop-001-tee',
     name: 'Drop 001 Tee',
-    price: 58,
+    price: 40,
     meta: 'Faded Grey · Heavyweight Cotton',
     stock: '17 of 24 remaining',
     stockType: 'live',
@@ -37,7 +37,7 @@ export const products: Product[] = [
   {
     slug: 'washed-dad-hat',
     name: 'Washed Dad Hat',
-    price: 38,
+    price: 35,
     meta: 'Walnut · 6-Panel Cotton',
     stock: '9 of 24 remaining',
     stockType: 'live',
@@ -52,26 +52,6 @@ export const products: Product[] = [
     ],
     available: true,
     variant: 'hat',
-  },
-  {
-    slug: 'bone-pocket-tee',
-    name: 'Bone Pocket Tee',
-    price: 62,
-    meta: 'Bone · Garment Dyed',
-    stock: 'Drops May 28',
-    stockType: 'soon',
-    badge: 'soon',
-    tag: '03',
-    description:
-      'Bone-dyed pocket tee with a subtle wordmark. Same heavyweight build as Drop 001 — different character.',
-    details: [
-      '240gsm heavyweight cotton',
-      'Left chest pocket',
-      'Garment-dyed bone wash',
-      'Relaxed fit — true to size',
-    ],
-    available: false,
-    variant: 'bone',
   },
 ];
 

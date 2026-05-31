@@ -175,7 +175,14 @@ input { font-family: inherit; }
 }
 .nav-left a:hover, .nav-right a:hover { opacity: 0.6; }
 
-.nav-logo { color: var(--charcoal); display: inline-flex; }
+.nav-logo { color: var(--charcoal); display: inline-flex; align-items: center; }
+.nav-logo-wordmark {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
 .grid-mark { width: 36px; height: 36px; }
 .grid-mark-large { width: 56px; height: 56px; }
 
@@ -545,8 +552,9 @@ input { font-family: inherit; }
   max-width: 1480px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
+  max-width: 960px;
 }
 
 .product {
@@ -1152,7 +1160,6 @@ input { font-family: inherit; }
   .story-grid { grid-template-columns: 1fr; gap: 60px; }
   .drop-header { grid-template-columns: 1fr; gap: 24px; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .products .product:last-child { grid-column: span 2; max-width: 50%; }
   .editorial-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 320px 320px 320px; }
   .ed-card-tall { grid-row: span 1; }
   .pillars-grid, .journal-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1172,7 +1179,6 @@ input { font-family: inherit; }
   .story, .drop, .editorial, .pillars, .journal, .signup, .footer { padding-left: 20px; padding-right: 20px; }
   .story, .drop, .pillars, .journal, .signup { padding-top: 80px; padding-bottom: 80px; }
   .products { grid-template-columns: 1fr; }
-  .products .product:last-child { grid-column: auto; max-width: none; }
   .editorial-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 280px); }
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .signup-form { flex-direction: column; }

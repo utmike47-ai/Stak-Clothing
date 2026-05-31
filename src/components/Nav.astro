@@ -1,6 +1,4 @@
 ---
-import LogoMark from './LogoMark.astro';
-
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
 const link = (hash: string) => (isHome ? hash : `/${hash}`);
@@ -29,7 +27,7 @@ const link = (hash: string) => (isHome ? hash : `/${hash}`);
     </div>
 
     <a href="/" class="nav-logo" aria-label="STAK home">
-      <LogoMark />
+      <span class="nav-logo-wordmark" aria-hidden="true">STAK</span>
     </a>
 
     <nav class="nav-right" aria-label="Account">
