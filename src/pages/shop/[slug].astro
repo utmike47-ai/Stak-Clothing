@@ -39,10 +39,6 @@ const { product } = Astro.props;
         <h1>{product.name}</h1>
         <p class="product-detail-price">${product.price}</p>
         <p class="product-meta">{product.meta}</p>
-        <p class={`product-stock ${product.stockType === 'soon' ? 'product-stock-soon' : ''}`}>
-          {product.stockType === 'live' && <span class="dot-live"></span>}
-          {product.stock}
-        </p>
         <p class="product-detail-desc">{product.description}</p>
         <ul class="product-detail-list">
           {product.details.map((detail) => <li>{detail}</li>)}

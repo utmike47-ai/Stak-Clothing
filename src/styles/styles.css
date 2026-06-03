@@ -265,56 +265,24 @@ input { font-family: inherit; }
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
-.hero-layer-1 {
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  display: block;
+}
+.hero-overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 80% 30%, rgba(191, 148, 155, 0.18), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 20% 70%, rgba(107, 84, 60, 0.35), transparent 60%),
-    linear-gradient(180deg, #1a1612 0%, #0f0d0a 60%, #050403 100%);
-}
-.hero-layer-2 {
-  position: absolute;
-  inset: 0;
-  background:
-    /* Mountains silhouette */
-    linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%),
-    /* Sun glow */
-    radial-gradient(circle at 75% 35%, rgba(245, 200, 150, 0.12) 0%, transparent 40%);
-}
-.hero-layer-2::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 45%;
-  background:
-    linear-gradient(135deg, transparent 49%, #0a0807 50%) 0 100% / 22% 100% repeat-x,
-    linear-gradient(45deg, transparent 49%, #0a0807 50%) 0 100% / 22% 100% repeat-x;
-  opacity: 0.6;
-  mask-image: linear-gradient(180deg, transparent 0%, black 80%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 80%);
-}
-.hero-layer-2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background:
-    linear-gradient(135deg, transparent 49%, #050403 50%) 0 100% / 30% 100% repeat-x,
-    linear-gradient(45deg, transparent 49%, #050403 50%) 15% 100% / 30% 100% repeat-x;
-  opacity: 0.9;
-}
-.hero-noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.06;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    linear-gradient(180deg, rgba(17, 18, 19, 0.35) 0%, rgba(17, 18, 19, 0.15) 40%, rgba(17, 18, 19, 0.55) 100%),
+    linear-gradient(90deg, rgba(17, 18, 19, 0.45) 0%, transparent 55%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -497,11 +465,13 @@ input { font-family: inherit; }
   overflow: hidden;
   border: 1px solid rgba(17,18,19,0.1);
 }
-.story-svg {
+.story-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
   display: block;
 }
 .story-art-label {
@@ -593,6 +563,22 @@ input { font-family: inherit; }
     radial-gradient(ellipse at center, rgba(245,236,215,0.3) 0%, transparent 70%),
     linear-gradient(180deg, #1f1a14 0%, #100c08 100%);
 }
+.product-image-photo.product-hat,
+.product-image-photo.product-tee {
+  background: var(--bone-soft);
+}
+.product-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+.product-image-photo .garment-tag {
+  color: var(--walnut-deep);
+}
 .product-bone {
   background:
     radial-gradient(ellipse at center, rgba(245,236,215,0.6) 0%, transparent 70%),
@@ -658,39 +644,6 @@ input { font-family: inherit; }
   color: var(--walnut);
   letter-spacing: 0.02em;
 }
-.product-stock {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--charcoal);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-}
-.product-stock-soon { color: var(--grey-cool); }
-.dot-live {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4a7c4e;
-  position: relative;
-}
-.dot-live::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  background: #4a7c4e;
-  opacity: 0.3;
-  animation: pulse 2s var(--ease) infinite;
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(0.6); opacity: 0.6; }
-  50% { transform: scale(1.4); opacity: 0; }
-}
-
 /* =========================================================
    Editorial / Lifestyle
    ========================================================= */
@@ -732,29 +685,36 @@ input { font-family: inherit; }
   flex-direction: column;
   color: var(--bone);
   transition: transform 0.6s var(--ease);
+  isolation: isolate;
 }
 .ed-card:hover { transform: translateY(-4px); }
 .ed-card-tall { grid-row: span 2; }
 
-.ed-austin {
-  background:
-    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(245,200,150,0.18), transparent 70%),
-    linear-gradient(180deg, #2a2218 0%, #1a1410 60%, #0a0805 100%);
+.ed-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  z-index: 0;
+  transition: transform 0.8s var(--ease);
 }
-.ed-colorado {
+.ed-card:hover .ed-card-photo { transform: scale(1.04); }
+.ed-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(191,148,155,0.15), transparent 70%),
-    linear-gradient(180deg, #4a3a28 0%, #2a2218 100%);
+    linear-gradient(180deg, rgba(17, 18, 19, 0.25) 0%, rgba(17, 18, 19, 0.1) 35%, rgba(17, 18, 19, 0.55) 100%);
+  pointer-events: none;
 }
-.ed-malibu {
-  background:
-    radial-gradient(ellipse 100% 70% at 70% 20%, rgba(245,200,150,0.35), transparent 60%),
-    linear-gradient(180deg, #6b543c 0%, #3a2818 100%);
-}
-.ed-desert {
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(245,180,130,0.25), transparent 70%),
-    linear-gradient(180deg, #5a4530 0%, #2a1e14 100%);
+.ed-card .ed-stamp,
+.ed-card .ed-place-wrap,
+.ed-card .ed-meta {
+  position: relative;
+  z-index: 2;
 }
 
 .ed-stamp {
@@ -782,6 +742,10 @@ input { font-family: inherit; }
   letter-spacing: -0.025em;
   line-height: 1;
   color: var(--bone);
+}
+.ed-place-long {
+  font-size: clamp(1.45rem, 2.4vw, 2.35rem);
+  line-height: 1.05;
 }
 .ed-region {
   font-size: 11px;
@@ -817,19 +781,6 @@ input { font-family: inherit; }
   color: var(--bone-dim);
   font-weight: 500;
 }
-
-.ed-glyph {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 30%;
-  color: rgba(245, 236, 215, 0.06);
-  pointer-events: none;
-  transition: color 0.6s var(--ease);
-}
-.ed-card:hover .ed-glyph { color: rgba(245, 236, 215, 0.14); }
 
 /* =========================================================
    Pillars
@@ -918,6 +869,16 @@ input { font-family: inherit; }
   overflow: hidden;
   position: relative;
   transition: transform 0.6s var(--ease);
+}
+.journal-art-photo {
+  background: var(--bone-soft);
+}
+.journal-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
 .journal-card:hover .journal-art { transform: translateY(-4px); }
 .journal-art-1 {
@@ -1172,6 +1133,7 @@ input { font-family: inherit; }
   .nav-inner { grid-template-columns: auto 1fr auto; gap: 16px; }
   .nav-start { min-width: 44px; }
   .hero { min-height: 88vh; padding: 80px 20px 40px; }
+  .hero-image { object-position: center 38%; }
   .hero-title { font-size: 14vw; }
   .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
   .hero-cta .btn { width: 100%; }
@@ -1385,12 +1347,47 @@ body.menu-open { overflow: hidden; }
   aspect-ratio: 16/9;
   margin-bottom: 48px;
   border: 1px solid rgba(17, 18, 19, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Journal article detail */
+.journal-post-hero {
+  padding-bottom: 48px;
+}
+.journal-article .article-art {
+  margin-bottom: 0;
+}
+.journal-article-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: clamp(2.75rem, 5vw, 4rem);
+  margin-bottom: 2.5rem;
+  overflow: visible;
+}
+.journal-article-header .journal-meta {
+  margin-bottom: 0;
+}
+.journal-article-header h1 {
+  margin: 0;
+  line-height: 1.2;
+  overflow: visible;
+}
+.journal-article-body p:last-child {
+  margin-bottom: 0;
+}
+.journal-article > .link-underline {
+  display: inline-block;
+  margin-top: 2.5rem;
 }
 
 @media (max-width: 640px) {
   .nav-toggle { display: flex; }
   .page-hero, .product-detail, .article-page { padding-left: 20px; padding-right: 20px; }
   .page-hero { padding-top: 100px; }
+  .journal-post-hero { padding-bottom: 32px; }
+  .journal-article-header { padding-top: 2rem; }
   .product-detail { grid-template-columns: 1fr; gap: 40px; }
 }
 

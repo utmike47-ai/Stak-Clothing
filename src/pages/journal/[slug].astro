@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalArt from '../../components/JournalArt.astro';
 import { journalPosts, getJournalPost } from '../../data/products';
 
 export function getStaticPaths() {
@@ -13,7 +14,7 @@ const { post } = Astro.props;
 ---
 <BaseLayout title={post.title} description={post.excerpt}>
   <main>
-    <section class="page-hero" style="padding-bottom: 0;">
+    <section class="page-hero journal-post-hero">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
         <span>/</span>
@@ -21,19 +22,23 @@ const { post } = Astro.props;
         <span>/</span>
         <span>{post.title}</span>
       </nav>
-      <div class="journal-meta" style="margin-top: 24px;">
-        <span>{post.date}</span>
-        <span>·</span>
-        <span>{post.readTime}</span>
-      </div>
     </section>
 
-    <article class="article-page">
-      <div class={`article-art ${post.artClass}`}></div>
-      <h1>{post.title}</h1>
-      {post.body.map((paragraph) => (
-        <p>{paragraph}</p>
-      ))}
+    <article class="article-page journal-article">
+      <JournalArt post={post} variant="article" />
+      <header class="journal-article-header">
+        <div class="journal-meta">
+          <span>{post.date}</span>
+          <span>·</span>
+          <span>{post.readTime}</span>
+        </div>
+        <h1>{post.title}</h1>
+      </header>
+      <div class="journal-article-body">
+        {post.body.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
       <a href="/journal" class="link-underline">← All entries</a>
     </article>
   </main>

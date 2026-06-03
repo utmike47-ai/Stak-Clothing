@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalArt from '../../components/JournalArt.astro';
 import { journalPosts } from '../../data/products';
 ---
 <BaseLayout
@@ -18,7 +19,7 @@ import { journalPosts } from '../../data/products';
         {journalPosts.map((post) => (
           <article class="journal-card">
             <a href={`/journal/${post.slug}`}>
-              <div class={`journal-art ${post.artClass}`}></div>
+              <JournalArt post={post} />
             </a>
             <div class="journal-meta">
               <span>{post.date}</span>

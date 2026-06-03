@@ -19,9 +19,5 @@ const { product } = Astro.props;
       <span class="price">${product.price}</span>
     </div>
     <p class="product-meta">{product.meta}</p>
-    <p class={`product-stock ${product.stockType === 'soon' ? 'product-stock-soon' : ''}`}>
-      {product.stockType === 'live' && <span class="dot-live"></span>}
-      {product.stock}
-    </p>
   </div>
 </article>

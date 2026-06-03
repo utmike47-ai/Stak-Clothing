@@ -6,10 +6,21 @@ interface Props {
 }
 const { product } = Astro.props;
 const imageClass = product.variant === 'tee' ? 'product-tee' : 'product-hat';
+const hasPhoto = Boolean(product.image);
 ---
-<div class={`product-image ${imageClass}`}>
+<div class={`product-image ${imageClass} ${hasPhoto ? 'product-image-photo' : ''}`}>
   <div class="garment-tag">{product.tag}</div>
-  {product.variant === 'tee' && (
+  {product.image ? (
+    <img
+      src={product.image}
+      alt={product.name}
+      class="product-photo"
+      width="1638"
+      height="2048"
+      loading="lazy"
+      decoding="async"
+    />
+  ) : product.variant === 'tee' ? (
     <svg viewBox="0 0 300 360" class="tee-svg" aria-hidden="true">
       <defs>
         <linearGradient id="teeGrad" x1="0" y1="0" x2="0" y2="1">
@@ -29,8 +40,7 @@ const imageClass = product.variant === 'tee' ? 'product-tee' : 'product-hat';
         <text x="9" y="13" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="8" fill="#2a221c">K</text>
       </g>
     </svg>
-  )}
-  {product.variant === 'hat' && (
+  ) : (
     <svg viewBox="0 0 300 360" class="hat-svg" aria-hidden="true">
       <defs>
         <linearGradient id="hatGrad" x1="0" y1="0" x2="0" y2="1">
