@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductVisual from '../../components/ProductVisual.astro';
+import ShopifyBuyButton from '../../components/ShopifyBuyButton.astro';
 import { products, getProduct } from '../../data/products';
 
 export function getStaticPaths() {
@@ -29,7 +30,7 @@ const { product } = Astro.props;
 
     <div class="product-detail">
       <div class="product-detail-media">
-        <ProductVisual product={product} />
+        <ProductVisual product={product} view="detail" />
         {product.badge === 'dropped' && <div class="product-badge" style="position:absolute;top:18px;right:18px;">Just Dropped</div>}
         {product.badge === 'soon' && <div class="product-badge product-badge-soon" style="position:absolute;top:18px;right:18px;">Coming Soon</div>}
       </div>
@@ -44,7 +45,12 @@ const { product } = Astro.props;
           {product.details.map((detail) => <li>{detail}</li>)}
         </ul>
         <div class="product-detail-actions">
-          {product.available ? (
+          {product.shopifyBuy ? (
+            <ShopifyBuyButton
+              componentId={product.shopifyBuy.componentId}
+              productId={product.shopifyBuy.productId}
+            />
+          ) : product.available ? (
             <button type="button" class="btn btn-primary" data-add-to-cart>
               Add to Cart — ${product.price}
             </button>

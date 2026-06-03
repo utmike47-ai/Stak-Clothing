@@ -9,14 +9,19 @@ export interface Product {
   details: string[];
   available: boolean;
   variant: 'tee' | 'hat';
-  image?: string;
+  image: string;
+  detailImage: string;
+  shopifyBuy?: {
+    componentId: string;
+    productId: string;
+  };
 }
 
 export const products: Product[] = [
   {
     slug: 'drop-001-tee',
     name: 'Drop 001 Tee',
-    price: 40,
+    price: 38,
     meta: 'Faded Grey · Heavyweight Cotton',
     badge: 'dropped',
     tag: '01',
@@ -30,12 +35,17 @@ export const products: Product[] = [
     ],
     available: true,
     variant: 'tee',
-    image: '/products/drop-001-tee.jpg',
+    image: '/shirt1.jpg',
+    detailImage: '/shirt2.jpg',
+    shopifyBuy: {
+      componentId: 'product-component-1780507748910',
+      productId: '9699208757493',
+    },
   },
   {
     slug: 'washed-dad-hat',
     name: 'Washed Dad Hat',
-    price: 35,
+    price: 32,
     meta: 'Walnut · 6-Panel Cotton',
     tag: '02',
     description:
@@ -49,6 +59,11 @@ export const products: Product[] = [
     available: true,
     variant: 'hat',
     image: '/products/washed-dad-hat.jpg',
+    detailImage: '/products/washed-dad-hat-detail.jpg',
+    shopifyBuy: {
+      componentId: 'product-component-1780508170086',
+      productId: '9699228385525',
+    },
   },
 ];
 

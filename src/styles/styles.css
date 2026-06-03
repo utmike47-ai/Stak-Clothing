@@ -352,6 +352,12 @@ input { font-family: inherit; }
   color: var(--bone);
   letter-spacing: -0.02em;
 }
+.meta-value-long {
+  font-size: clamp(0.75rem, 1.6vw, 1rem);
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  max-width: 9rem;
+}
 
 .scroll-indicator {
   position: absolute;
@@ -1120,7 +1126,7 @@ input { font-family: inherit; }
   .story, .drop, .editorial, .pillars, .journal, .signup { padding-left: 24px; padding-right: 24px; }
   .story-grid { grid-template-columns: 1fr; gap: 60px; }
   .drop-header { grid-template-columns: 1fr; gap: 24px; }
-  .products { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .products { grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 960px; }
   .editorial-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 320px 320px 320px; }
   .ed-card-tall { grid-row: span 1; }
   .pillars-grid, .journal-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1317,6 +1323,27 @@ body.menu-open { overflow: hidden; }
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 8px;
+  align-items: flex-start;
+}
+.shopify-buy-button-mount {
+  flex: 1 1 280px;
+  max-width: 100%;
+  min-height: 48px;
+}
+.shopify-buy-button-mount .shopify-buy__product {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+.shopify-buy-button-mount .shopify-buy__btn {
+  font-family: var(--font-body) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  border-radius: 0 !important;
+  min-height: 48px !important;
+  width: 100% !important;
+  max-width: 320px !important;
 }
 .btn-disabled {
   background: var(--grey-cool);

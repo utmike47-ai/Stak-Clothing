@@ -1,0 +1,30 @@
+---
+interface Props {
+  componentId: string;
+  productId: string;
+}
+
+const { componentId, productId } = Astro.props;
+---
+<div
+  id={componentId}
+  class="shopify-buy-button-mount"
+  data-shopify-product-id={productId}
+></div>
+<script src="/scripts/shopify-buy-button.js" defer></script>
+<script is:inline define:vars={{ componentId, productId }}>
+  (function () {
+    function tryInit() {
+      if (typeof window.initShopifyBuyButton === 'function') {
+        window.initShopifyBuyButton(componentId, productId);
+        return;
+      }
+      setTimeout(tryInit, 40);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryInit);
+    } else {
+      tryInit();
+    }
+  })();
+</script>
