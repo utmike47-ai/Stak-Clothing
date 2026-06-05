@@ -457,12 +457,6 @@ input { font-family: inherit; }
   transition: opacity 0.3s var(--ease);
 }
 .home-cta-link:hover { opacity: 0.65; }
-.product-buy {
-  margin-top: 16px;
-}
-.product-buy .shopify-buy-button-mount {
-  flex: none;
-}
 .home-editorial {
   padding-top: 160px;
   border-top: 1px solid rgba(17, 18, 19, 0.06);
@@ -612,6 +606,8 @@ input { font-family: inherit; }
 .product {
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
 }
 .product-media {
   position: relative;

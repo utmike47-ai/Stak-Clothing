@@ -1,33 +1,23 @@
 ---
 import type { Product } from '../data/products';
 import ProductVisual from './ProductVisual.astro';
-import ShopifyBuyButton from './ShopifyBuyButton.astro';
 
 interface Props {
   product: Product;
-  showBuy?: boolean;
 }
-const { product, showBuy = false } = Astro.props;
+const { product } = Astro.props;
 ---
-<article class="product">
-  <a href={`/shop/${product.slug}`} class="product-media">
+<a href={`/shop/${product.slug}`} class="product">
+  <div class="product-media">
     <ProductVisual product={product} />
     {product.badge === 'dropped' && <div class="product-badge">Just Dropped</div>}
     {product.badge === 'soon' && <div class="product-badge product-badge-soon">Coming Soon</div>}
-  </a>
+  </div>
   <div class="product-info">
     <div class="product-row">
-      <h3><a href={`/shop/${product.slug}`}>{product.name}</a></h3>
+      <h3>{product.name}</h3>
       <span class="price">${product.price}</span>
     </div>
     <p class="product-meta">{product.meta}</p>
-    {showBuy && product.shopifyBuy && (
-      <div class="product-buy">
-        <ShopifyBuyButton
-          componentId={product.shopifyBuy.componentId}
-          productId={product.shopifyBuy.productId}
-        />
-      </div>
-    )}
   </div>
-</article>
+</a>
