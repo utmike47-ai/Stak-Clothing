@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProductCard from "../components/ProductCard.astro";
-import JournalCarousel from "../components/JournalCarousel.astro";
-import { products, journalPosts } from "../data/products";
+import { products } from "../data/products";
 ---
 <BaseLayout title="STAK">
 <main id="top">
@@ -33,8 +32,8 @@ import { products, journalPosts } from "../data/products";
         Mountains to coast. Whatever the day holds.
       </p>
       <div class="hero-cta fade-in" style="--delay:.3s">
-        <a href="#drop" class="btn btn-primary">Shop Drop 001</a>
-        <a href="#story" class="btn btn-ghost">Our Story →</a>
+        <a href="/shop" class="btn btn-primary">Shop Drop 001</a>
+        <a href="/story" class="btn btn-ghost">Our Story →</a>
       </div>
     </div>
 
@@ -67,7 +66,8 @@ import { products, journalPosts } from "../data/products";
       <span>Austin, TX</span><span class="dot">✦</span>
     </div>
   </section>
-  <!-- STORY / MANIFESTO -->
+
+  <!-- STORY -->
   <section class="story home-story" id="story">
     <div class="story-grid">
       <div class="story-image">
@@ -100,13 +100,14 @@ import { products, journalPosts } from "../data/products";
         <p>
           We make small runs of essential menswear in Austin, Texas — built from heavyweight cottons, garment-dyed for character, and finished with details that hold up after the hundredth wash. No seasonal noise. No trend chasing. Just pieces you'll reach for first.
         </p>
-        <a href="#drop" class="link-underline">See what we made →</a>
+        <a href="/story" class="link-underline">Read the full story →</a>
       </div>
     </div>
   </section>
 
   <div class="section-break" aria-hidden="true"></div>
 
+  <!-- SHOP -->
   <section class="drop home-shop" id="drop">
     <div class="drop-header">
       <div>
@@ -118,155 +119,13 @@ import { products, journalPosts } from "../data/products";
       </p>
     </div>
     <div class="products" id="shop">
-      {products.map((product) => <ProductCard product={product} />)}
+      {products.map((product) => <ProductCard product={product} showBuy />)}
     </div>
   </section>
 
-  <!-- LIFESTYLE / EDITORIAL -->
-  <section class="editorial home-editorial">
-    <div class="editorial-header">
-      <p class="eyebrow">Worn here</p>
-      <h2 class="display">From one to the other.</h2>
-      <p class="editorial-sub">Drop 001 was shot across four places from Texas to the coast. Real days. Real light. No retouching.</p>
-    </div>
-    <div class="editorial-grid">
-
-      <article class="ed-card ed-card-tall">
-        <img src="/austin.jpg" alt="" class="ed-card-photo" loading="lazy" decoding="async" />
-        <div class="ed-card-overlay" aria-hidden="true"></div>
-        <div class="ed-stamp">
-          <span class="ed-num">No. 01</span>
-          <span class="ed-dot">●</span>
-        </div>
-        <div class="ed-place-wrap">
-          <h3 class="ed-place">Austin</h3>
-          <span class="ed-region">Texas, USA</span>
-        </div>
-        <div class="ed-meta">
-          <div><span>30.27° N</span><span>97.74° W</span></div>
-          <div class="ed-shot">35mm · Morning</div>
-        </div>
-      </article>
-
-      <article class="ed-card">
-        <img src="/boulder.jpg" alt="" class="ed-card-photo" loading="lazy" decoding="async" />
-        <div class="ed-card-overlay" aria-hidden="true"></div>
-        <div class="ed-stamp">
-          <span class="ed-num">No. 02</span>
-          <span class="ed-dot">●</span>
-        </div>
-        <div class="ed-place-wrap">
-          <h3 class="ed-place">Boulder</h3>
-          <span class="ed-region">Colorado, USA</span>
-        </div>
-        <div class="ed-meta">
-          <div><span>40.01° N</span><span>105.27° W</span></div>
-          <div class="ed-shot">35mm · Noon</div>
-        </div>
-      </article>
-
-      <article class="ed-card">
-        <img src="/manhattan-beach.jpg" alt="" class="ed-card-photo" loading="lazy" decoding="async" />
-        <div class="ed-card-overlay" aria-hidden="true"></div>
-        <div class="ed-stamp">
-          <span class="ed-num">No. 03</span>
-          <span class="ed-dot">●</span>
-        </div>
-        <div class="ed-place-wrap">
-          <h3 class="ed-place ed-place-long">Manhattan Beach</h3>
-          <span class="ed-region">California, USA</span>
-        </div>
-        <div class="ed-meta">
-          <div><span>33.88° N</span><span>118.41° W</span></div>
-          <div class="ed-shot">35mm · Golden Hour</div>
-        </div>
-      </article>
-
-      <article class="ed-card ed-card-tall">
-        <img src="/terlingua.jpg" alt="" class="ed-card-photo" loading="lazy" decoding="async" />
-        <div class="ed-card-overlay" aria-hidden="true"></div>
-        <div class="ed-stamp">
-          <span class="ed-num">No. 04</span>
-          <span class="ed-dot">●</span>
-        </div>
-        <div class="ed-place-wrap">
-          <h3 class="ed-place">Terlingua</h3>
-          <span class="ed-region">Texas, USA</span>
-        </div>
-        <div class="ed-meta">
-          <div><span>29.32° N</span><span>103.62° W</span></div>
-          <div class="ed-shot">35mm · Dusk</div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- VALUES / PILLARS -->
-  <section class="pillars">
-    <div class="pillars-header">
-      <p class="eyebrow">The Standard</p>
-      <h2 class="display">Three things, done right.</h2>
-    </div>
-    <div class="pillars-grid">
-      <div class="pillar">
-        <svg viewBox="0 0 60 60" class="pillar-icon" aria-hidden="true">
-          <path d="M5 50 L20 25 L30 35 L42 18 L55 50 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
-          <circle cx="45" cy="15" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <h3>Limited Runs</h3>
-        <p>Short Run, and Done, then we move on. No restocks, no archive sales. When it's gone, it's part of someone's story.</p>
-      </div>
-      <div class="pillar">
-        <svg viewBox="0 0 60 60" class="pillar-icon" aria-hidden="true">
-          <circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M30 8 L30 52 M8 30 L52 30" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M30 30 L42 18 L36 36 Z" fill="currentColor" opacity="0.6"/>
-        </svg>
-        <h3>Real Places</h3>
-        <p>Every drop is shot in a real place, on a real person, on a real day. No studios, no stylists. The clothes earn the catalog.</p>
-      </div>
-      <div class="pillar">
-        <svg viewBox="0 0 60 60" class="pillar-icon" aria-hidden="true">
-          <rect x="12" y="12" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M12 30 L48 30 M30 12 L30 48" stroke="currentColor" stroke-width="1.2"/>
-          <circle cx="30" cy="30" r="5" fill="currentColor"/>
-        </svg>
-        <h3>Made to Last</h3>
-        <p>Heavyweight cottons, double-needle stitching, garment-dyed for depth. The kind of build that gets better with the years on it.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-break section-break--journal" aria-hidden="true"></div>
-
-  <!-- JOURNAL / EDITORIAL -->
-  <section class="journal home-journal" id="journal">
-    <div class="journal-header">
-      <div>
-        <p class="eyebrow">The Journal</p>
-        <h2 class="display">Field notes.</h2>
-      </div>
-    </div>
-
-    <JournalCarousel posts={journalPosts} />
-    <div class="journal-carousel-footer">
-      <a href="/journal" class="link-underline">read the field notes →</a>
-    </div>
-  </section>
-  <!-- NEWSLETTER -->
-  <section class="signup" id="signup">
-    <div class="signup-inner">
-      <p class="eyebrow eyebrow-light">Stay in the loop</p>
-      <h2 class="display display-light">Be first when the next one drops.</h2>
-      <p class="signup-sub">Drops are small. We tell our list first — usually 48 hours before anyone else.</p>
-      <form class="signup-form">
-        <input type="email" required placeholder="your@email.com" aria-label="Email address" />
-        <button type="submit">Notify Me</button>
-      </form>
-      <p class="signup-status" aria-live="polite"></p>
-      <p class="signup-fine">No spam. Unsubscribe in one click.</p>
-    </div>
+  <!-- CLOSING CTA -->
+  <section class="home-cta">
+    <a href="/shop" class="home-cta-link">shop the first run →</a>
   </section>
 </main>
 </BaseLayout>

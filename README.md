@@ -36,7 +36,7 @@ Static output is written to `dist/`.
 
 **Netlify** — build command `npm run build`, publish directory `dist`.
 
-Update `site` in `astro.config.mjs` when your domain is final (currently `https://staksupply.co`).
+Update `site` in `astro.config.mjs` when your domain is final (currently `https://www.stakclothing.com`).
 
 ## Project structure
 

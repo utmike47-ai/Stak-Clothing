@@ -1,11 +1,13 @@
 ---
 import type { Product } from '../data/products';
 import ProductVisual from './ProductVisual.astro';
+import ShopifyBuyButton from './ShopifyBuyButton.astro';
 
 interface Props {
   product: Product;
+  showBuy?: boolean;
 }
-const { product } = Astro.props;
+const { product, showBuy = false } = Astro.props;
 ---
 <article class="product">
   <a href={`/shop/${product.slug}`} class="product-media">
@@ -19,5 +21,13 @@ const { product } = Astro.props;
       <span class="price">${product.price}</span>
     </div>
     <p class="product-meta">{product.meta}</p>
+    {showBuy && product.shopifyBuy && (
+      <div class="product-buy">
+        <ShopifyBuyButton
+          componentId={product.shopifyBuy.componentId}
+          productId={product.shopifyBuy.productId}
+        />
+      </div>
+    )}
   </div>
 </article>

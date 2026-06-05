@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://staksupply.co/sitemap-index.xml
+Sitemap: https://www.stakclothing.com/sitemap-index.xml
