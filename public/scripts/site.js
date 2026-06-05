@@ -39,7 +39,7 @@ document.addEventListener('keydown', (e) => {
 
 // Reveal-on-scroll
 const revealTargets = document.querySelectorAll(
-  '.story-text, .story-image, .drop-header, .product, .ed-card, .pillar, .journal-card, .signup-inner, .page-hero, .product-detail'
+  '.story-text, .story-image, .drop-header, .product, .ed-card, .pillar, .journal-carousel, .journal-card, .signup-inner, .page-hero, .product-detail'
 );
 revealTargets.forEach((el, i) => {
   el.classList.add('reveal');
@@ -112,6 +112,53 @@ if (hero && heroBg && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     },
     { passive: true }
   );
+}
+
+// Journal carousel (homepage)
+const journalCarousel = document.querySelector('[data-journal-carousel]');
+if (journalCarousel) {
+  const track = journalCarousel.querySelector('[data-carousel-track]');
+  const slides = journalCarousel.querySelectorAll('[data-carousel-slide]');
+  const prevBtn = journalCarousel.querySelector('[data-carousel-prev]');
+  const nextBtn = journalCarousel.querySelector('[data-carousel-next]');
+  const viewport = journalCarousel.querySelector('[data-carousel-viewport]');
+  let index = 0;
+  let touchStartX = 0;
+
+  const goTo = (nextIndex) => {
+    if (!track || !slides.length) return;
+    index = (nextIndex + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    slides.forEach((slide, i) => {
+      slide.setAttribute('aria-hidden', i !== index ? 'true' : 'false');
+    });
+  };
+
+  prevBtn?.addEventListener('click', () => goTo(index - 1));
+  nextBtn?.addEventListener('click', () => goTo(index + 1));
+
+  viewport?.addEventListener(
+    'touchstart',
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  viewport?.addEventListener(
+    'touchend',
+    (e) => {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) < 48) return;
+      goTo(index + (deltaX < 0 ? 1 : -1));
+    },
+    { passive: true }
+  );
+
+  journalCarousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') goTo(index - 1);
+    if (e.key === 'ArrowRight') goTo(index + 1);
+  });
 }
 
 // Newsletter

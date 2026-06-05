@@ -418,6 +418,58 @@ input { font-family: inherit; }
   overflow: hidden;
   padding: 18px 0;
 }
+
+/* Homepage section rhythm */
+.section-break {
+  height: 88px;
+  background: var(--bone);
+  border-bottom: 1px solid rgba(17, 18, 19, 0.07);
+}
+.section-break--journal {
+  height: 56px;
+  background: var(--bone);
+  border-top: 1px solid rgba(17, 18, 19, 0.07);
+  border-bottom: none;
+}
+.home-story {
+  padding-top: 180px;
+  padding-bottom: 0;
+}
+.home-shop {
+  padding-top: 180px;
+  padding-bottom: 200px;
+}
+.home-editorial {
+  padding-top: 160px;
+  border-top: 1px solid rgba(17, 18, 19, 0.06);
+}
+.home-journal {
+  max-width: none;
+  padding: 40px 40px 32px;
+  background: var(--bone-soft);
+  border-top: 1px solid rgba(17, 18, 19, 0.06);
+}
+.home-journal .journal-header,
+.home-journal .journal-carousel,
+.home-journal .journal-carousel-footer {
+  width: min(75%, 900px);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.home-journal .journal-header {
+  margin-bottom: 28px;
+}
+.home-journal .journal-header .display {
+  margin-top: 12px;
+}
+.home-journal .journal-carousel-body {
+  gap: 12px;
+  margin-top: 14px;
+}
+.home-journal .journal-carousel-footer {
+  margin-top: 24px;
+}
 .strip-track {
   display: flex;
   gap: 50px;
@@ -864,6 +916,75 @@ input { font-family: inherit; }
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
 }
+.journal-carousel {
+  position: relative;
+  margin: 0 auto;
+}
+.journal-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+.journal-carousel-track {
+  display: flex;
+  transition: transform 0.55s var(--ease);
+  will-change: transform;
+}
+.journal-carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.journal-carousel-media {
+  display: block;
+}
+.journal-carousel .journal-art {
+  aspect-ratio: unset;
+  height: min(540px, 48vh);
+  max-height: 540px;
+}
+.journal-carousel .journal-photo {
+  object-fit: cover;
+  object-position: center 38%;
+}
+.journal-carousel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 18px;
+}
+.journal-carousel-btn {
+  position: absolute;
+  top: min(270px, 24vh);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(17, 18, 19, 0.08);
+  background: rgba(245, 236, 215, 0.88);
+  color: var(--charcoal);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease), background 0.25s var(--ease);
+}
+.journal-carousel:hover .journal-carousel-btn,
+.journal-carousel:focus-within .journal-carousel-btn {
+  opacity: 0.7;
+}
+.journal-carousel-btn:hover {
+  opacity: 1 !important;
+  background: var(--bone);
+}
+.journal-carousel-btn--prev { left: 12px; transform: translateY(-50%); }
+.journal-carousel-btn--next { right: 12px; transform: translateY(-50%); }
+.journal-carousel-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+@media (hover: none) {
+  .journal-carousel-btn { display: none; }
+}
 .journal-card {
   display: flex;
   flex-direction: column;
@@ -887,6 +1008,7 @@ input { font-family: inherit; }
   display: block;
 }
 .journal-card:hover .journal-art { transform: translateY(-4px); }
+.journal-carousel .journal-card:hover .journal-art { transform: none; }
 .journal-art-1 {
   background:
     radial-gradient(ellipse at 50% 60%, rgba(245,236,215,0.4), transparent),
@@ -1146,6 +1268,28 @@ input { font-family: inherit; }
   .scroll-indicator { display: none; }
   .story, .drop, .editorial, .pillars, .journal, .signup, .footer { padding-left: 20px; padding-right: 20px; }
   .story, .drop, .pillars, .journal, .signup { padding-top: 80px; padding-bottom: 80px; }
+  .home-story { padding-top: 100px; padding-bottom: 0; }
+  .home-shop { padding-top: 100px; padding-bottom: 120px; }
+  .home-editorial { padding-top: 100px; }
+  .home-journal { padding: 36px 20px 32px; }
+  .home-journal .journal-header,
+  .home-journal .journal-carousel,
+  .home-journal .journal-carousel-footer {
+    width: min(92%, 900px);
+  }
+  .home-journal .journal-header { margin-bottom: 20px; }
+  .home-journal .journal-carousel-body { gap: 10px; margin-top: 12px; }
+  .home-journal .journal-carousel-footer { margin-top: 20px; }
+  .journal-carousel .journal-art {
+    height: min(360px, 40vh);
+    max-height: 360px;
+  }
+  .journal-carousel .journal-photo {
+    object-position: center 35%;
+  }
+  .journal-carousel-btn { top: min(180px, 20vh); }
+  .section-break { height: 56px; }
+  .section-break--journal { height: 40px; }
   .products { grid-template-columns: 1fr; }
   .editorial-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 280px); }
   .footer-cols { grid-template-columns: 1fr 1fr; }

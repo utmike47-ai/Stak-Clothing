@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProductCard from "../components/ProductCard.astro";
-import JournalArt from "../components/JournalArt.astro";
+import JournalCarousel from "../components/JournalCarousel.astro";
 import { products, journalPosts } from "../data/products";
 ---
 <BaseLayout title="STAK">
@@ -68,7 +68,7 @@ import { products, journalPosts } from "../data/products";
     </div>
   </section>
   <!-- STORY / MANIFESTO -->
-  <section class="story" id="story">
+  <section class="story home-story" id="story">
     <div class="story-grid">
       <div class="story-image">
         <div class="story-art">
@@ -104,7 +104,10 @@ import { products, journalPosts } from "../data/products";
       </div>
     </div>
   </section>
-  <section class="drop" id="drop">
+
+  <div class="section-break" aria-hidden="true"></div>
+
+  <section class="drop home-shop" id="drop">
     <div class="drop-header">
       <div>
         <p class="eyebrow">Drop 001</p>
@@ -118,8 +121,9 @@ import { products, journalPosts } from "../data/products";
       {products.map((product) => <ProductCard product={product} />)}
     </div>
   </section>
+
   <!-- LIFESTYLE / EDITORIAL -->
-  <section class="editorial">
+  <section class="editorial home-editorial">
     <div class="editorial-header">
       <p class="eyebrow">Worn here</p>
       <h2 class="display">From one to the other.</h2>
@@ -234,32 +238,20 @@ import { products, journalPosts } from "../data/products";
     </div>
   </section>
 
+  <div class="section-break section-break--journal" aria-hidden="true"></div>
+
   <!-- JOURNAL / EDITORIAL -->
-  <section class="journal" id="journal">
+  <section class="journal home-journal" id="journal">
     <div class="journal-header">
       <div>
         <p class="eyebrow">The Journal</p>
         <h2 class="display">Field notes.</h2>
       </div>
-      <a href="/journal" class="link-underline">All entries →</a>
     </div>
 
-    <div class="journal-grid">
-      {journalPosts.map((post) => (
-        <article class="journal-card">
-          <a href={`/journal/${post.slug}`}>
-            <JournalArt post={post} />
-          </a>
-          <div class="journal-meta">
-            <span>{post.date}</span>
-            <span>·</span>
-            <span>{post.readTime}</span>
-          </div>
-          <h3><a href={`/journal/${post.slug}`}>{post.title}</a></h3>
-          <p>{post.excerpt}</p>
-          <a href={`/journal/${post.slug}`} class="link-underline-sm">Read →</a>
-        </article>
-      ))}
+    <JournalCarousel posts={journalPosts} />
+    <div class="journal-carousel-footer">
+      <a href="/journal" class="link-underline">read the field notes →</a>
     </div>
   </section>
   <!-- NEWSLETTER -->

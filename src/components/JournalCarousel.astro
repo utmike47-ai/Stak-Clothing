@@ -1,0 +1,59 @@
+---
+import JournalArt from './JournalArt.astro';
+import type { JournalPost } from '../data/products';
+
+interface Props {
+  posts: JournalPost[];
+}
+
+const { posts } = Astro.props;
+---
+<div class="journal-carousel" data-journal-carousel tabindex="0">
+  <button
+    type="button"
+    class="journal-carousel-btn journal-carousel-btn--prev"
+    data-carousel-prev
+    aria-label="Previous journal entry"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M15 6l-6 6 6 6"/>
+    </svg>
+  </button>
+
+  <div class="journal-carousel-viewport" data-carousel-viewport>
+    <div class="journal-carousel-track" data-carousel-track>
+      {posts.map((post, index) => (
+        <article
+          class="journal-card journal-carousel-slide"
+          data-carousel-slide
+          aria-hidden={index !== 0 ? 'true' : 'false'}
+        >
+          <a href={`/journal/${post.slug}`} class="journal-carousel-media">
+            <JournalArt post={post} />
+          </a>
+          <div class="journal-carousel-body">
+            <div class="journal-meta">
+              <span>{post.date}</span>
+              <span>·</span>
+              <span>{post.readTime}</span>
+            </div>
+            <h3><a href={`/journal/${post.slug}`}>{post.title}</a></h3>
+            <p>{post.excerpt}</p>
+            <a href={`/journal/${post.slug}`} class="link-underline-sm">Read →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="journal-carousel-btn journal-carousel-btn--next"
+    data-carousel-next
+    aria-label="Next journal entry"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M9 6l6 6-6 6"/>
+    </svg>
+  </button>
+</div>
