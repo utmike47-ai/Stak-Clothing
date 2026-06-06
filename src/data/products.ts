@@ -12,6 +12,7 @@ export interface Product {
   image: string;
   detailImage: string;
   imageAlt: string;
+  pageTitle: string;
   shopifyBuy?: {
     componentId: string;
     productId: string;
@@ -39,6 +40,7 @@ export const products: Product[] = [
     image: '/shirt1.jpg',
     detailImage: '/shirt2.jpg',
     imageAlt: 'STAK Drop 001 heavyweight garment dyed tee in faded grey',
+    pageTitle: 'Drop 001 Tee — Garment Dyed Heavyweight Cotton | STAK',
     shopifyBuy: {
       componentId: 'product-component-1780507748910',
       productId: '9699208757493',
@@ -63,6 +65,7 @@ export const products: Product[] = [
     image: '/products/washed-dad-hat.jpg',
     detailImage: '/products/washed-dad-hat-detail.jpg',
     imageAlt: 'STAK washed dad hat in walnut brown',
+    pageTitle: 'Washed Dad Hat — Walnut 6-Panel Cotton | STAK',
     shopifyBuy: {
       componentId: 'product-component-1780508170086',
       productId: '9699228385525',
@@ -82,6 +85,8 @@ export interface JournalPost {
   readTime: string;
   artClass: string;
   image?: string;
+  imageAlt?: string;
+  pageTitle: string;
   body: string[];
 }
 
@@ -95,6 +100,7 @@ export const journalPosts: JournalPost[] = [
     artClass: 'journal-art-1',
     image: '/shortrunanddone.png',
     imageAlt: 'Runners on Lady Bird Lake trail with Austin skyline',
+    pageTitle: 'Short Run and Done — Why We Make 24 | STAK',
     body: [
       'we make a small run of shirts each drop. that\'s it.',
       'not because we can\'t make more. because we don\'t want to. there\'s something about a small number that changes the way you think about what you\'re making. you stop cutting corners. you stop thinking about scale. you start thinking about the person who\'s going to put it on.',
@@ -113,6 +119,7 @@ export const journalPosts: JournalPost[] = [
     artClass: 'journal-art-2',
     image: '/sfirst.jpg',
     imageAlt: 'Man reading on South Congress Avenue sidewalk Austin',
+    pageTitle: 'Saturday Morning, South Congress — Field Notes | STAK',
     body: [
       'no alarm. coffee\'s already cold by the time you get to it. doesn\'t matter.',
       'south congress on a saturday has this specific thing where nobody\'s in a hurry but everybody\'s out. the guy unlocking the vintage shop. someone\'s dog tied to a bench, totally fine with it. the couple splitting a kolache on the sidewalk without talking.',
@@ -130,6 +137,7 @@ export const journalPosts: JournalPost[] = [
     artClass: 'journal-art-3',
     image: '/inbetween.png',
     imageAlt: 'Empty two-lane road through Texas Hill Country at golden hour',
+    pageTitle: 'What In-Between Means — Our Philosophy | STAK',
     body: [
       'most brands pick a lane. gym brand. surf brand. outdoor brand. you know what you\'re getting before you even look.',
       'we didn\'t want that.',

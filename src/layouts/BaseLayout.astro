@@ -25,7 +25,7 @@ const {
   jsonLd = [],
 } = Astro.props;
 
-const fullTitle = title === 'STAK' ? 'STAK — Style That Always Keeps' : `${title} · STAK`;
+const fullTitle = title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const structuredData = [
   organizationJsonLd(Astro.site!),

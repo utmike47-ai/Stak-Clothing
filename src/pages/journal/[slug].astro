@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const canonical = new URL(`/journal/${post.slug}`, Astro.site);
 ---
 <BaseLayout
-  title={post.title}
+  title={post.pageTitle}
   description={post.excerpt}
   ogImage={post.image}
   breadcrumbs={[

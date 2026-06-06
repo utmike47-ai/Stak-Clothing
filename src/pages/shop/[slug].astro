@@ -16,7 +16,7 @@ const { product } = Astro.props;
 const canonical = new URL(`/shop/${product.slug}`, Astro.site);
 ---
 <BaseLayout
-  title={product.name}
+  title={product.pageTitle}
   description={product.description}
   ogImage={product.detailImage}
   breadcrumbs={[
