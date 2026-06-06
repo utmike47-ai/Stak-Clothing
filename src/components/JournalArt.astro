@@ -13,7 +13,7 @@ const wrapperClass = variant === 'article' ? 'article-art' : 'journal-art';
   <div class={`${wrapperClass} journal-art-photo`}>
     <img
       src={post.image}
-      alt=""
+      alt={post.imageAlt ?? post.title}
       class="journal-photo"
       loading="lazy"
       decoding="async"

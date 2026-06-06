@@ -14,7 +14,7 @@ const photoSrc = view === 'detail' ? product.detailImage : product.image;
   <div class="garment-tag">{product.tag}</div>
   <img
     src={photoSrc}
-    alt={product.name}
+    alt={product.imageAlt}
     class="product-photo"
     loading={view === 'detail' ? 'eager' : 'lazy'}
     decoding="async"
