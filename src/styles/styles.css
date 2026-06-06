@@ -26,7 +26,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
 
 body {
   background: var(--bone);
@@ -1279,7 +1283,7 @@ input { font-family: inherit; }
   .story, .drop, .editorial, .pillars, .journal, .signup { padding-left: 24px; padding-right: 24px; }
   .story-grid { grid-template-columns: 1fr; gap: 60px; }
   .drop-header { grid-template-columns: 1fr; gap: 24px; }
-  .products { grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 960px; }
+  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 960px; }
   .editorial-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 320px 320px 320px; }
   .ed-card-tall { grid-row: span 1; }
   .pillars-grid, .journal-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1287,49 +1291,93 @@ input { font-family: inherit; }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 768px) {
+  .products { grid-template-columns: 1fr; max-width: 100%; }
+}
+
 @media (max-width: 640px) {
   .nav-left { display: none; }
-  .nav-inner { grid-template-columns: auto 1fr auto; gap: 16px; }
+  .nav-inner { grid-template-columns: auto 1fr auto; gap: 16px; padding: 16px 20px; }
   .nav-start { min-width: 44px; }
+  .nav-logo-wordmark { font-size: 1.65rem; }
+
   .hero { min-height: 88vh; padding: 80px 20px 40px; }
-  .hero-image { object-position: center 38%; }
-  .hero-title { font-size: 14vw; }
+  .hero-image { object-position: center 38%; width: 100%; height: 100%; object-fit: cover; }
+  .hero-title { font-size: clamp(2.4rem, 14vw, 3.5rem); line-height: 0.98; }
+  .hero-sub { font-size: 1.05rem; max-width: 100%; }
   .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
   .hero-cta .btn { width: 100%; }
   .scroll-indicator { display: none; }
+
+  .display { font-size: clamp(2rem, 9vw, 2.75rem); }
+  .lede { font-size: 1.05rem; }
+  .page-hero-sub { font-size: 1rem; max-width: 100%; }
+
   .story, .drop, .editorial, .pillars, .journal, .signup, .footer { padding-left: 20px; padding-right: 20px; }
   .story, .drop, .pillars, .journal, .signup { padding-top: 80px; padding-bottom: 80px; }
   .home-story { padding-top: 100px; padding-bottom: 0; }
   .home-shop { padding-top: 100px; padding-bottom: 80px; }
   .home-cta { padding: 80px 20px 120px; }
+  .home-cta-link { font-size: clamp(1.25rem, 6.5vw, 1.75rem); }
   .home-editorial { padding-top: 100px; }
   .story-page-mark { padding: 80px 20px; }
   .story-page-mark-inner { grid-template-columns: 1fr; gap: 40px; }
   .story-page-prose { padding: 0 20px 80px; }
+  .story-page-prose-inner .lede { font-size: 1.1rem; }
+  .story-grid { gap: 40px; }
+  .story-image { width: 100%; }
+  .story-photo { width: 100%; height: 100%; object-fit: cover; }
+  .drop-blurb { max-width: 100%; font-size: 1rem; }
+
   .home-journal { padding: 36px 20px 32px; }
   .home-journal .journal-header,
   .home-journal .journal-carousel,
   .home-journal .journal-carousel-footer {
-    width: min(92%, 900px);
+    width: 100%;
+    max-width: 100%;
   }
   .home-journal .journal-header { margin-bottom: 20px; }
   .home-journal .journal-carousel-body { gap: 10px; margin-top: 12px; }
   .home-journal .journal-carousel-footer { margin-top: 20px; }
   .journal-carousel .journal-art {
-    height: min(360px, 40vh);
+    height: min(360px, 52vw);
     max-height: 360px;
   }
   .journal-carousel .journal-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     object-position: center 35%;
   }
-  .journal-carousel-btn { top: min(180px, 20vh); }
+  .journal-carousel-btn { top: min(180px, 26vw); }
+  .journal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    gap: 16px;
+  }
+
   .section-break { height: 56px; }
   .section-break--journal { height: 40px; }
-  .products { grid-template-columns: 1fr; }
+  .products { grid-template-columns: 1fr; max-width: 100%; gap: 32px; }
+  .product { width: 100%; }
+  .product-media { width: 100%; }
+  .product-photo { width: 100%; height: 100%; object-fit: cover; }
+  .product-row { flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+  .product-info h3 { font-size: 1.2rem; line-height: 1.2; }
+
+  .editorial { padding-bottom: 80px; }
+  .editorial-header { margin-bottom: 40px; }
   .editorial-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 280px); }
+  .ed-place-long { font-size: 1.35rem; }
+
+  .footer { padding-top: 80px; overflow: hidden; }
+  .footer-wordmark { font-size: clamp(5rem, 22vw, 8rem); }
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .signup-form { flex-direction: column; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+
+  main { max-width: 100%; overflow-x: clip; }
 }
 
 /* Intersection-observer driven reveal */
@@ -1639,10 +1687,25 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 640px) {
   .nav-toggle { display: flex; }
   .page-hero, .product-detail, .article-page { padding-left: 20px; padding-right: 20px; }
-  .page-hero { padding-top: 100px; }
+  .page-hero { padding-top: 100px; padding-bottom: 60px; }
   .journal-post-hero { padding-bottom: 32px; }
   .journal-article-header { padding-top: 2rem; }
-  .product-detail { grid-template-columns: 1fr; gap: 40px; }
+  .product-detail { grid-template-columns: 1fr; gap: 40px; padding-bottom: 100px; }
+  .product-detail-media { width: 100%; }
+  .product-detail-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .product-detail-actions .btn { width: 100%; }
+  .shopify-buy-button-mount {
+    width: 100%;
+    max-width: 100%;
+  }
+  .shopify-buy-button-mount .shopify-buy__btn {
+    max-width: 100% !important;
+  }
+  .breadcrumb { font-size: 10px; row-gap: 4px; }
+  .article-page h1 { font-size: clamp(1.85rem, 8vw, 2.5rem); }
 }
 
 @media (max-width: 1024px) {

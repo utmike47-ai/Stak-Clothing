@@ -16,12 +16,16 @@ const menuClose = document.querySelector('[data-menu-close]');
 
 const openMenu = () => {
   menu?.classList.add('open');
+  menu?.setAttribute('aria-hidden', 'false');
   menuToggle?.setAttribute('aria-expanded', 'true');
+  menuToggle?.setAttribute('aria-label', 'Close menu');
   document.body.classList.add('menu-open');
 };
 const closeMenu = () => {
   menu?.classList.remove('open');
+  menu?.setAttribute('aria-hidden', 'true');
   menuToggle?.setAttribute('aria-expanded', 'false');
+  menuToggle?.setAttribute('aria-label', 'Open menu');
   document.body.classList.remove('menu-open');
 };
 
