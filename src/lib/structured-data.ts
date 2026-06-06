@@ -18,7 +18,7 @@ export function organizationJsonLd(site: URL | string) {
     '@type': 'Organization',
     name: 'STAK',
     url: origin,
-    logo: `${origin}/og-image.svg`,
+    logo: `${origin}/og-image.jpg`,
     sameAs: [] as string[],
   };
 }
@@ -81,7 +81,7 @@ export function articleJsonLd(post: JournalPost, site: URL | string, pageUrl: UR
       name: 'STAK',
       logo: {
         '@type': 'ImageObject',
-        url: `${origin}/og-image.svg`,
+        url: `${origin}/og-image.jpg`,
       },
     },
     mainEntityOfPage: typeof pageUrl === 'string' ? pageUrl : pageUrl.href,
