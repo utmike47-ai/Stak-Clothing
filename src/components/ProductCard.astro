@@ -7,7 +7,7 @@ interface Props {
 }
 const { product } = Astro.props;
 ---
-<a href={`/shop/${product.slug}`} class="product">
+<a href={`/shop/${product.slug}`} class="product" aria-label={`View ${product.name}`}>
   <div class="product-media">
     <ProductVisual product={product} />
     {product.badge === 'dropped' && <div class="product-badge">Just Dropped</div>}

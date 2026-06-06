@@ -86,17 +86,6 @@ document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
   });
 });
 
-document.querySelectorAll('.product-media').forEach((media) => {
-  if (media.closest('[data-add-to-cart]')) return;
-  media.addEventListener('click', (e) => {
-    const href = media.getAttribute('href');
-    if (!href || href === '#') {
-      e.preventDefault();
-      bumpCart();
-    }
-  });
-});
-
 // Hero parallax
 const hero = document.querySelector('.hero');
 const heroBg = document.querySelector('.hero-bg');

@@ -598,9 +598,10 @@ input { font-family: inherit; }
   max-width: 1480px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
   max-width: 960px;
+  align-items: start;
 }
 
 .product {
@@ -608,16 +609,26 @@ input { font-family: inherit; }
   flex-direction: column;
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.product * {
+  cursor: inherit;
 }
 .product-media {
   position: relative;
-  aspect-ratio: 4/5;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
   background: var(--bone);
   overflow: hidden;
   margin-bottom: 20px;
   display: block;
   border: 1px solid rgba(17,18,19,0.06);
   transition: transform 0.6s var(--ease);
+}
+.home-shop .product-photo {
+  object-position: center bottom;
 }
 .product:hover .product-media { transform: translateY(-4px); }
 
