@@ -2,7 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductVisual from '../../components/ProductVisual.astro';
 import ShopifyBuyButton from '../../components/ShopifyBuyButton.astro';
-import { products, getProduct } from '../../data/products';
+import { products } from '../../data/products';
+import { productJsonLd } from '../../lib/structured-data';
 
 export function getStaticPaths() {
   return products.map((product) => ({
@@ -12,10 +13,18 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const canonical = new URL(`/shop/${product.slug}`, Astro.site);
 ---
 <BaseLayout
   title={product.name}
   description={product.description}
+  ogImage={product.detailImage}
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop' },
+    { name: product.name, path: `/shop/${product.slug}` },
+  ]}
+  jsonLd={[productJsonLd(product, Astro.site!, canonical)]}
 >
   <main>
     <section class="page-hero" style="padding-bottom: 40px;">

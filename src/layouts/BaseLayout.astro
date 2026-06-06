@@ -3,21 +3,35 @@ import '../styles/styles.css';
 import Announcement from '../components/Announcement.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import {
+  organizationJsonLd,
+  breadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '../lib/structured-data';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title,
   description = 'STAK — Style That Always Keeps. Limited runs of essential menswear, built for the in-between. Texas to California.',
   ogImage = '/og-image.svg',
+  breadcrumbs = [{ name: 'Home', path: '/' }],
+  jsonLd = [],
 } = Astro.props;
 
 const fullTitle = title === 'STAK' ? 'STAK — Style That Always Keeps' : `${title} · STAK`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const structuredData = [
+  organizationJsonLd(Astro.site!),
+  breadcrumbJsonLd(breadcrumbs, Astro.site!),
+  ...jsonLd,
+];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +56,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    {structuredData.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body>
     <Announcement />

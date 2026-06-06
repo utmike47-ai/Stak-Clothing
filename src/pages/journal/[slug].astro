@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JournalArt from '../../components/JournalArt.astro';
-import { journalPosts, getJournalPost } from '../../data/products';
+import { journalPosts } from '../../data/products';
+import { articleJsonLd } from '../../lib/structured-data';
 
 export function getStaticPaths() {
   return journalPosts.map((post) => ({
@@ -11,8 +12,19 @@ export function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const canonical = new URL(`/journal/${post.slug}`, Astro.site);
 ---
-<BaseLayout title={post.title} description={post.excerpt}>
+<BaseLayout
+  title={post.title}
+  description={post.excerpt}
+  ogImage={post.image}
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Field Notes', path: '/journal' },
+    { name: post.title, path: `/journal/${post.slug}` },
+  ]}
+  jsonLd={[articleJsonLd(post, Astro.site!, canonical)]}
+>
   <main>
     <section class="page-hero journal-post-hero">
       <nav class="breadcrumb" aria-label="Breadcrumb">

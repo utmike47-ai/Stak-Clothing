@@ -6,6 +6,10 @@ import { journalPosts } from '../../data/products';
 <BaseLayout
   title="Journal"
   description="Field notes from STAK — garment dye, road trips, and what in-between means."
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Field Notes', path: '/journal' },
+  ]}
 >
   <main>
     <section class="page-hero">

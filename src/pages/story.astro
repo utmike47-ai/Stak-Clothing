@@ -5,6 +5,10 @@ import LogoMark from '../components/LogoMark.astro';
 <BaseLayout
   title="Story"
   description="The STAK story — built for the in-between. Small runs, real places, made to last. Austin, Texas."
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Story', path: '/story' },
+  ]}
 >
   <main>
     <section class="page-hero">
