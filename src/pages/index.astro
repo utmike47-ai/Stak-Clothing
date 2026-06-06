@@ -114,9 +114,14 @@ import { products } from "../data/products";
         <p class="eyebrow">Drop 001</p>
         <h2 class="display">The First Run.</h2>
       </div>
-      <p class="drop-blurb">
-        Two pieces. Short Run, and Done. Dyed in small batches in Texas — when they're gone, they're gone.
-      </p>
+      <div class="drop-blurb-wrap">
+        <p class="drop-blurb">
+          Two pieces. Short Run, and Done. Dyed in small batches in Texas — when they're gone, they're gone.
+        </p>
+        <p class="drop-blurb">
+          a short run means every shirt gets more than inspected. it gets held up. turned over. tried on by someone in the room before it goes in the bag.
+        </p>
+      </div>
     </div>
     <div class="products" id="shop">
       {products.map((product) => <ProductCard product={product} />)}

@@ -589,6 +589,8 @@ input { font-family: inherit; }
   align-items: end;
 }
 .drop-header .display { margin-top: 18px; }
+.drop-blurb-wrap { max-width: 440px; }
+.drop-blurb-wrap .drop-blurb + .drop-blurb { margin-top: 1em; }
 .drop-blurb {
   font-family: var(--font-display);
   font-size: 1.1rem;

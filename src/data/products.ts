@@ -92,7 +92,7 @@ export interface JournalPost {
 
 export const journalPosts: JournalPost[] = [
   {
-    slug: '24-and-done',
+    slug: 'short-run-and-done',
     title: 'Short Run and Done',
     excerpt: 'we make a small run of shirts each drop. that\'s it.',
     date: 'May 14, 2026',
@@ -100,11 +100,11 @@ export const journalPosts: JournalPost[] = [
     artClass: 'journal-art-1',
     image: '/shortrunanddone.png',
     imageAlt: 'Runners on Lady Bird Lake trail with Austin skyline',
-    pageTitle: 'Short Run and Done — Why We Make 24 | STAK',
+    pageTitle: 'Short Run and Done — Why We Keep Runs Small | STAK',
     body: [
       'we make a small run of shirts each drop. that\'s it.',
+      'a short run means every shirt gets more than inspected. it gets held up. turned over. tried on by someone in the room before it goes in the bag.',
       'not because we can\'t make more. because we don\'t want to. there\'s something about a small number that changes the way you think about what you\'re making. you stop cutting corners. you stop thinking about scale. you start thinking about the person who\'s going to put it on.',
-      'a short run means every shirt gets looked at. not inspected — looked at. held up. turned over. tried on by someone in the room before it goes in the bag.',
       'it also means they go fast, and when they\'re gone, they\'re gone. we\'re not restocking. we\'re not running it back. the next drop will be something different.',
       'some people hear that and think it\'s a marketing thing. scarcity. hype. whatever. it\'s not. it\'s just the number where we can still make something we\'d actually wear and not lose sleep over what we sent out.',
       'maybe one day the run gets bigger. but right now, keeping it small feels honest.',
@@ -113,7 +113,7 @@ export const journalPosts: JournalPost[] = [
   {
     slug: 'saturday-morning-south-congress',
     title: 'Saturday Morning, South Congress',
-    excerpt: 'no alarm. coffee\'s already cold by the time you get to it.',
+    excerpt: 'no alarm. off to a late start. doesn\'t matter.',
     date: 'April 28, 2026',
     readTime: '4 min read',
     artClass: 'journal-art-2',
@@ -121,11 +121,11 @@ export const journalPosts: JournalPost[] = [
     imageAlt: 'Man reading on South Congress Avenue sidewalk Austin',
     pageTitle: 'Saturday Morning, South Congress — Field Notes | STAK',
     body: [
-      'no alarm. coffee\'s already cold by the time you get to it. doesn\'t matter.',
-      'south congress on a saturday has this specific thing where nobody\'s in a hurry but everybody\'s out. the guy unlocking the vintage shop. someone\'s dog tied to a bench, totally fine with it. the couple splitting a kolache on the sidewalk without talking.',
+      'no alarm. off to a late start. doesn\'t matter.',
+      'south congress on a saturday has this specific thing where nobody\'s in a hurry but everybody\'s out. the guy setting up the vintage shops across from Homeslice. someone\'s dog tied to a bench, totally fine with it. the couple splitting a kolache on the sidewalk without talking.',
       'you put on a shirt you didn\'t think about. shorts. whatever shoes are closest to the door. the outfit takes four seconds and somehow that\'s when it looks right.',
-      'there\'s a walk you do — not to anywhere, just out and back. past the mural that changes every few months. past the place that used to be a bar and is now a coffee shop and will probably be something else next year. you don\'t mind. the street holds its shape even when the names on the doors don\'t.',
-      'this is the energy we make clothes for. not the big moment. the nothing moment. saturday morning, south congress, cold coffee, no plans.',
+      'there\'s a walk you do — not to anywhere, just out and back. past the I love you so much mural at Jo\'s. past the place that used to be a bar and is now a coffee shop and will probably be something else next year. you don\'t mind. the street holds its shape even when the names on the doors don\'t.',
+      'this is the energy we make clothes for. not the big moment. the nothing moment. saturday morning, south congress, no plans.',
     ],
   },
   {
@@ -141,12 +141,11 @@ export const journalPosts: JournalPost[] = [
     body: [
       'most brands pick a lane. gym brand. surf brand. outdoor brand. you know what you\'re getting before you even look.',
       'we didn\'t want that.',
-      'stak lives in the in-between. the hour after the meeting and before the trail. the drive where you\'re not at work anymore but you\'re not on vacation yet. the outfit that works at the coffee shop and still works at the campsite and you didn\'t change.',
+      'stak lives in the in-between. the hour after the meeting and before the trail. the drive where you\'re not at work anymore but you\'re not on vacation yet. the outfit that works at the coffee shop but still works at the campsite and you didn\'t have to change.',
       'that\'s not an accident. that\'s the whole idea.',
-      'we grew up around people who didn\'t really separate their lives into categories. the guy who surfs before work and closes deals by lunch. the woman who hikes canyons on saturday and runs a studio on monday. they don\'t dress for one version of themselves. they just get dressed.',
-      'there\'s a road outside austin — you\'ve probably driven it — where the city just stops and the canyon starts. no transition. no sign that says "now entering nature." one second you\'re passing a gas station and the next second the sky opens up and the rock walls drop and your phone loses signal. the in-between happens fast and you don\'t notice it until you\'re already in it.',
-      'that\'s what we want the clothes to feel like. you put them on in one place and they just come with you to the next one. no costume change. no "this is my weekend shirt." just stuff that moves with you.',
-      'we don\'t pick a lane because you don\'t live in one.',
+      'we grew up around people who didn\'t really separate their lives into categories. they don\'t dress for one version of themselves. they just get dressed.',
+      'there\'s a road outside austin — you\'ve probably driven it — where the city just stops and the hill country starts. no transition. no sign that says \'now entering nature.\' one second you\'re passing a gas station and the next second the sky opens up and your phone loses signal. the in-between happens fast and you don\'t notice it until you\'re already in it.',
+      'that\'s what we want the clothes to feel like. you put them on in one place and they just come with you to the next one. no costume change. no \'this is my weekend shirt.\' just stuff that moves with you.',
     ],
   },
 ];
