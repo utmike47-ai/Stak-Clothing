@@ -55,10 +55,12 @@ const canonical = new URL(`/shop/${product.slug}`, Astro.site);
         </ul>
         <div class="product-detail-actions">
           {product.shopifyBuy ? (
-            <ShopifyBuyButton
-              componentId={product.shopifyBuy.componentId}
-              productId={product.shopifyBuy.productId}
-            />
+            <div class="product-detail-shopify">
+              <ShopifyBuyButton
+                componentId={product.shopifyBuy.componentId}
+                productId={product.shopifyBuy.productId}
+              />
+            </div>
           ) : product.available ? (
             <button type="button" class="btn btn-primary" data-add-to-cart>
               Add to Cart — ${product.price}
@@ -68,7 +70,7 @@ const canonical = new URL(`/shop/${product.slug}`, Astro.site);
               Coming Soon
             </button>
           )}
-          <a href="/shop" class="btn btn-ghost-dark">Back to Drop 001</a>
+          <a href="/shop" class="btn btn-ghost-dark product-detail-back">Back to Drop 001</a>
         </div>
       </div>
     </div>
