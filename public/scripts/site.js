@@ -63,15 +63,12 @@ const io = new IntersectionObserver(
 );
 revealTargets.forEach((el) => io.observe(el));
 
-// Cart count
-let cartCount = 0;
-const cartEl = document.querySelector('.cart-count');
+// Cart count — Shopify Buy Button syncs via refreshShopifyCartCount in shopify-buy-button.js
+const cartEls = document.querySelectorAll('.cart-count');
 
-const bumpCart = () => {
-  cartCount += 1;
-  if (cartEl) {
-    cartEl.textContent = String(cartCount);
-    cartEl.animate(
+const animateCartCount = () => {
+  cartEls.forEach((el) => {
+    el.animate(
       [
         { transform: 'scale(1)' },
         { transform: 'scale(1.4)' },
@@ -79,16 +76,35 @@ const bumpCart = () => {
       ],
       { duration: 300, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
     );
-  }
+  });
 };
+
+document.addEventListener('stak:cart-updated', (event) => {
+  if (event.detail?.count > 0) animateCartCount();
+});
 
 document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
   btn.addEventListener('click', (e) => {
     if (btn.hasAttribute('disabled')) return;
     e.preventDefault();
-    bumpCart();
+    const current = Number(cartEls[0]?.textContent || 0);
+    cartEls.forEach((el) => {
+      el.textContent = String(current + 1);
+    });
+    animateCartCount();
   });
 });
+
+document.querySelector('.cart-link')?.addEventListener('click', (e) => {
+  const shopifySection = document.querySelector('.product-detail-shopify');
+  if (!shopifySection) return;
+  e.preventDefault();
+  shopifySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+if (typeof window.refreshShopifyCartCount === 'function') {
+  window.refreshShopifyCartCount();
+}
 
 // Hero parallax
 const hero = document.querySelector('.hero');

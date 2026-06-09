@@ -119,6 +119,155 @@
   var pending = [];
   var sdkLoading = false;
   var clientReady = null;
+  var shopifyClient = null;
+  var cartPollStarted = false;
+
+  function getCheckoutStorageKey() {
+    return STOREFRONT_ACCESS_TOKEN + '.' + DOMAIN + '.checkoutId';
+  }
+
+  function getShopifyStorageKeys() {
+    var keys = [];
+    var patterns = [
+      'shopify-buy',
+      'shopify_buy',
+      'shopifyCart',
+      DOMAIN,
+      STOREFRONT_ACCESS_TOKEN,
+    ];
+
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
+      if (!key) continue;
+      for (var j = 0; j < patterns.length; j++) {
+        if (key.indexOf(patterns[j]) !== -1) {
+          keys.push(key);
+          break;
+        }
+      }
+    }
+
+    return keys;
+  }
+
+  function clearShopifyStorage() {
+    getShopifyStorageKeys().forEach(function (key) {
+      localStorage.removeItem(key);
+    });
+  }
+
+  function isReturningFromCheckout() {
+    var ref = document.referrer || '';
+    if (/shopify\.com/i.test(ref)) return true;
+    if (/\/checkouts?\//i.test(ref)) return true;
+    return false;
+  }
+
+  function setNavCartCount(count) {
+    var total = Math.max(0, Number(count) || 0);
+    document.querySelectorAll('.cart-count').forEach(function (el) {
+      el.textContent = String(total);
+    });
+    document.dispatchEvent(
+      new CustomEvent('stak:cart-updated', { detail: { count: total } })
+    );
+  }
+
+  function getCheckoutQuantity(checkout) {
+    if (!checkout || !checkout.lineItems) return 0;
+    return checkout.lineItems.reduce(function (sum, item) {
+      return sum + (item.quantity || 0);
+    }, 0);
+  }
+
+  function refreshNavCartCount() {
+    if (!shopifyClient) {
+      setNavCartCount(0);
+      return Promise.resolve(0);
+    }
+
+    var checkoutId = localStorage.getItem(getCheckoutStorageKey());
+    if (!checkoutId) {
+      setNavCartCount(0);
+      return Promise.resolve(0);
+    }
+
+    return shopifyClient.checkout
+      .fetch(checkoutId)
+      .then(function (checkout) {
+        if (checkout.completedAt) {
+          clearShopifyStorage();
+          setNavCartCount(0);
+          return 0;
+        }
+        var count = getCheckoutQuantity(checkout);
+        setNavCartCount(count);
+        return count;
+      })
+      .catch(function () {
+        clearShopifyStorage();
+        setNavCartCount(0);
+        return 0;
+      });
+  }
+
+  function verifyCheckoutSession(client) {
+    if (isReturningFromCheckout()) {
+      clearShopifyStorage();
+      return Promise.resolve();
+    }
+
+    var checkoutId = localStorage.getItem(getCheckoutStorageKey());
+    if (!checkoutId) {
+      return Promise.resolve();
+    }
+
+    return client.checkout
+      .fetch(checkoutId)
+      .then(function (checkout) {
+        if (checkout.completedAt) {
+          clearShopifyStorage();
+          return;
+        }
+        setNavCartCount(getCheckoutQuantity(checkout));
+      })
+      .catch(function () {
+        clearShopifyStorage();
+      });
+  }
+
+  function resetProductMounts() {
+    document.querySelectorAll('.shopify-buy-button-mount').forEach(function (node) {
+      node.innerHTML = '';
+      delete node.dataset.shopifyMounted;
+    });
+    clientReady = null;
+    shopifyClient = null;
+  }
+
+  function recoverCartSessionOnLoad() {
+    if (isReturningFromCheckout()) {
+      clearShopifyStorage();
+      resetProductMounts();
+    }
+  }
+
+  function handlePageShow(event) {
+    if (!event.persisted) return;
+    if (!isReturningFromCheckout()) return;
+    clearShopifyStorage();
+    resetProductMounts();
+    window.location.reload();
+  }
+
+  function startCartPolling() {
+    if (cartPollStarted) return;
+    cartPollStarted = true;
+    window.setInterval(refreshNavCartCount, 2500);
+  }
+
+  recoverCartSessionOnLoad();
+  window.addEventListener('pageshow', handlePageShow);
 
   function loadSdk() {
     return new Promise(function (resolve) {
@@ -148,13 +297,21 @@
 
   function getClient() {
     if (clientReady) return clientReady;
-    clientReady = loadSdk().then(function () {
-      var client = window.ShopifyBuy.buildClient({
-        domain: DOMAIN,
-        storefrontAccessToken: STOREFRONT_ACCESS_TOKEN,
+    clientReady = loadSdk()
+      .then(function () {
+        shopifyClient = window.ShopifyBuy.buildClient({
+          domain: DOMAIN,
+          storefrontAccessToken: STOREFRONT_ACCESS_TOKEN,
+        });
+        return verifyCheckoutSession(shopifyClient).then(function () {
+          return window.ShopifyBuy.UI.onReady(shopifyClient);
+        });
+      })
+      .then(function (ui) {
+        refreshNavCartCount();
+        startCartPolling();
+        return ui;
       });
-      return window.ShopifyBuy.UI.onReady(client);
-    });
     return clientReady;
   }
 
@@ -170,6 +327,7 @@
         options: BUY_BUTTON_OPTIONS,
       });
       node.dataset.shopifyMounted = 'true';
+      refreshNavCartCount();
     });
   }
 
@@ -177,6 +335,14 @@
     if (!componentId || !productId) return;
     pending.push({ componentId: componentId, productId: String(productId) });
     flushPending();
+  };
+
+  window.refreshShopifyCartCount = refreshNavCartCount;
+  window.clearShopifyCartSession = function () {
+    clearShopifyStorage();
+    resetProductMounts();
+    setNavCartCount(0);
+    return refreshNavCartCount();
   };
 
   function flushPending() {
@@ -191,4 +357,11 @@
       mountProduct(item.componentId, item.productId);
     }
   }
+
+  window.addEventListener('focus', refreshNavCartCount);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') {
+      refreshNavCartCount();
+    }
+  });
 })();
