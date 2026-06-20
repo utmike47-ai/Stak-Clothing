@@ -13,6 +13,7 @@ export interface Product {
   detailImage: string;
   imageAlt: string;
   pageTitle: string;
+  metaDescription?: string;
   shopifyBuy?: {
     componentId: string;
     productId: string;
@@ -28,7 +29,9 @@ export const products: Product[] = [
     badge: 'dropped',
     tag: '01',
     description:
-      'Our first run tee — 240gsm cotton, garment-dyed in small batches for a lived-in fade from day one. Grid mark on chest.',
+      'Our first run tee. A heavyweight garment dyed t shirt — 240gsm cotton, dyed in small batches for a lived-in fade from day one. Grid mark on the chest, broken in before you even put it on.',
+    metaDescription:
+      'A heavyweight garment dyed t shirt from STAK — 240gsm cotton, dyed in small batches in Austin for a lived-in fade from day one. Drop 001. Short run.',
     details: [
       '240gsm heavyweight cotton',
       'Garment-dyed in Texas',
@@ -39,8 +42,8 @@ export const products: Product[] = [
     variant: 'tee',
     image: '/shirt1.jpg',
     detailImage: '/shirt2.jpg',
-    imageAlt: 'STAK Drop 001 heavyweight garment dyed tee in faded grey',
-    pageTitle: 'Drop 001 Tee — Garment Dyed Heavyweight Cotton | STAK',
+    imageAlt: 'STAK Drop 001 heavyweight garment dyed t shirt in faded grey',
+    pageTitle: 'Garment Dyed T-Shirt — Heavyweight Cotton Tee | STAK',
     shopifyBuy: {
       componentId: 'product-component-1780507748910',
       productId: '9699208757493',
@@ -53,7 +56,9 @@ export const products: Product[] = [
     meta: 'Walnut · 6-Panel Cotton',
     tag: '02',
     description:
-      'Six-panel cotton cap, washed for softness. Embroidered wordmark. The kind of hat you forget you\'re wearing.',
+      'A washed dad hat in soft 6-panel cotton, with an embroidered wordmark and an adjustable brass buckle. Unstructured, broken-in — the kind of cap you forget you\'re wearing.',
+    metaDescription:
+      'A washed dad hat from STAK — soft 6-panel cotton with an embroidered wordmark and brass buckle. A men\'s washed baseball cap built for everyday, from Austin.',
     details: [
       '6-panel unstructured cotton',
       'Adjustable brass buckle',
@@ -64,8 +69,8 @@ export const products: Product[] = [
     variant: 'hat',
     image: '/products/washed-dad-hat.jpg',
     detailImage: '/products/washed-dad-hat-detail.jpg',
-    imageAlt: 'STAK washed dad hat in walnut brown',
-    pageTitle: 'Washed Dad Hat — Walnut 6-Panel Cotton | STAK',
+    imageAlt: 'STAK washed dad hat in walnut, men\'s 6-panel cotton cap',
+    pageTitle: 'Washed Dad Hat — Men\'s Washed Baseball Cap | STAK',
     shopifyBuy: {
       componentId: 'product-component-1780508170086',
       productId: '9699228385525',

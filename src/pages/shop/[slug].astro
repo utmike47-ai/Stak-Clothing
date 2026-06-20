@@ -17,7 +17,7 @@ const canonical = new URL(`/shop/${product.slug}`, Astro.site);
 ---
 <BaseLayout
   title={product.pageTitle}
-  description={product.description}
+  description={product.metaDescription ?? product.description}
   ogImage={product.detailImage}
   breadcrumbs={[
     { name: 'Home', path: '/' },
