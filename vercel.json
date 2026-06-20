@@ -1,5 +1,12 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    {
+      "source": "https://stakclothing.com/(.*)",
+      "destination": "https://www.stakclothing.com/$1",
+      "permanent": true
+    }
+  ]
 }

@@ -1,19 +1,31 @@
 ---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JournalArt from '../../components/JournalArt.astro';
 import JournalBody from '../../components/JournalBody.astro';
 import { journalPosts } from '../../data/products';
 import { articleJsonLd } from '../../lib/structured-data';
 
-export function getStaticPaths() {
+type FieldNoteEntry = CollectionEntry<'field-notes'>;
+
+export async function getStaticPaths() {
+  const entries = await getCollection('field-notes');
+  const bySlug = new Map(entries.map((entry) => [entry.id, entry]));
+
   return journalPosts.map((post) => ({
     params: { slug: post.slug },
-    props: { post },
+    props: { post, entry: bySlug.get(post.slug) ?? null },
   }));
 }
 
-const { post } = Astro.props;
-const canonical = new URL(`/journal/${post.slug}`, Astro.site);
+interface Props {
+  post: (typeof journalPosts)[number];
+  entry: FieldNoteEntry | null;
+}
+
+const { post, entry } = Astro.props;
+const { Content } = entry ? await render(entry) : { Content: null };
+const canonical = new URL(`/field-notes/${post.slug}`, Astro.site);
 ---
 <BaseLayout
   title={post.pageTitle}
@@ -21,8 +33,8 @@ const canonical = new URL(`/journal/${post.slug}`, Astro.site);
   ogImage={post.image}
   breadcrumbs={[
     { name: 'Home', path: '/' },
-    { name: 'Field Notes', path: '/journal' },
-    { name: post.title, path: `/journal/${post.slug}` },
+    { name: 'Field Notes', path: '/field-notes' },
+    { name: post.title, path: `/field-notes/${post.slug}` },
   ]}
   jsonLd={[articleJsonLd(post, Astro.site!, canonical)]}
 >
@@ -31,7 +43,7 @@ const canonical = new URL(`/journal/${post.slug}`, Astro.site);
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a>
         <span>/</span>
-        <a href="/journal">Field Notes</a>
+        <a href="/field-notes">Field Notes</a>
         <span>/</span>
         <span>{post.title}</span>
       </nav>
@@ -48,9 +60,9 @@ const canonical = new URL(`/journal/${post.slug}`, Astro.site);
         <h1>{post.title}</h1>
       </header>
       <div class="journal-article-body">
-        <JournalBody body={post.body} />
+        {Content ? <Content /> : <JournalBody body={post.body} />}
       </div>
-      <a href="/journal" class="link-underline">← All entries</a>
+      <a href="/field-notes" class="link-underline">← All entries</a>
     </article>
   </main>
 </BaseLayout>

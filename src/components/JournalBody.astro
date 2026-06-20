@@ -1,0 +1,20 @@
+---
+interface Props {
+  body: string[];
+}
+
+const { body } = Astro.props;
+
+function renderParagraph(text: string): string {
+  return text.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" class="link-underline">$1</a>',
+  );
+}
+---
+{body.map((block) => {
+  if (block.startsWith('## ')) {
+    return <h2>{block.slice(3)}</h2>;
+  }
+  return <p set:html={renderParagraph(block)} />;
+})}

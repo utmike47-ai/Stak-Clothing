@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalArt from '../../components/JournalArt.astro';
+import { journalPosts } from '../../data/products';
+---
+<BaseLayout
+  title="Field Notes — Style Journal | STAK Clothing"
+  description="Field notes from STAK — garment dye, road trips, and what in-between means."
+  breadcrumbs={[
+    { name: 'Home', path: '/' },
+    { name: 'Field Notes', path: '/field-notes' },
+  ]}
+>
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">The Journal</p>
+      <h1 class="display">Field notes.</h1>
+      <p class="page-hero-sub">Stories from the road, the dye house, and the in-between.</p>
+    </section>
+
+    <section class="journal" style="padding-top: 0;">
+      <div class="journal-grid">
+        {journalPosts.map((post) => (
+          <article class="journal-card">
+            <a href={`/field-notes/${post.slug}`}>
+              <JournalArt post={post} />
+            </a>
+            <div class="journal-meta">
+              <span>{post.date}</span>
+              <span>·</span>
+              <span>{post.readTime}</span>
+            </div>
+            <h3><a href={`/field-notes/${post.slug}`}>{post.title}</a></h3>
+            <p>{post.excerpt}</p>
+            <a href={`/field-notes/${post.slug}`} class="link-underline-sm">Read →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
