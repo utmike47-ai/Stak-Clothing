@@ -4,8 +4,14 @@
   "framework": "astro",
   "redirects": [
     {
-      "source": "https://stakclothing.com/(.*)",
-      "destination": "https://www.stakclothing.com/$1",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "stakclothing.com"
+        }
+      ],
+      "destination": "https://www.stakclothing.com/:path*",
       "permanent": true
     }
   ]
