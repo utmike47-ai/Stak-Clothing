@@ -9,8 +9,8 @@ Marketing site for STAK Supply Co. Built with [Astro](https://astro.build) for f
 | `/` | Homepage — hero, story, Drop 001, editorial, journal preview |
 | `/shop` | Full product grid |
 | `/shop/[slug]` | Product detail pages |
-| `/journal` | Journal index |
-| `/journal/[slug]` | Journal articles |
+| `/field-notes` | Field Notes index |
+| `/field-notes/[slug]` | Field Notes articles |
 
 ## Development
 

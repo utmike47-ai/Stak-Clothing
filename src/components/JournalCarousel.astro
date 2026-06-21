@@ -28,7 +28,7 @@ const { posts } = Astro.props;
           data-carousel-slide
           aria-hidden={index !== 0 ? 'true' : 'false'}
         >
-          <a href={`/journal/${post.slug}`} class="journal-carousel-media">
+          <a href={`/field-notes/${post.slug}`} class="journal-carousel-media">
             <JournalArt post={post} />
           </a>
           <div class="journal-carousel-body">
@@ -37,9 +37,9 @@ const { posts } = Astro.props;
               <span>·</span>
               <span>{post.readTime}</span>
             </div>
-            <h3><a href={`/journal/${post.slug}`}>{post.title}</a></h3>
+            <h3><a href={`/field-notes/${post.slug}`}>{post.title}</a></h3>
             <p>{post.excerpt}</p>
-            <a href={`/journal/${post.slug}`} class="link-underline-sm">Read →</a>
+            <a href={`/field-notes/${post.slug}`} class="link-underline-sm">Read →</a>
           </div>
         </article>
       ))}
