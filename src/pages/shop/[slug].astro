@@ -45,7 +45,7 @@ const canonical = new URL(`/shop/${product.slug}`, Astro.site);
       </div>
 
       <div class="product-detail-info">
-        <p class="eyebrow">Drop 001 · No. {product.tag}</p>
+        <p class="eyebrow">Drop {product.drop} · No. {product.tag}</p>
         <h1>{product.name}</h1>
         <p class="product-detail-price">${product.price}</p>
         <p class="product-meta">{product.meta}</p>
@@ -70,7 +70,7 @@ const canonical = new URL(`/shop/${product.slug}`, Astro.site);
               Coming Soon
             </button>
           )}
-          <a href="/shop" class="btn btn-ghost-dark product-detail-back">Back to Drop 001</a>
+          <a href="/shop" class="btn btn-ghost-dark product-detail-back">Back to Shop</a>
         </div>
       </div>
     </div>

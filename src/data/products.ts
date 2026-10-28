@@ -4,6 +4,7 @@ export interface Product {
   price: number;
   meta: string;
   badge?: 'dropped' | 'soon';
+  drop: string;
   tag: string;
   description: string;
   details: string[];
@@ -22,11 +23,41 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    slug: 'barton-skyline',
+    name: 'Barton Skyline Tee',
+    price: 38,
+    meta: 'Ivory · Comfort Colors',
+    badge: 'dropped',
+    drop: '002',
+    tag: '01',
+    description:
+      'drop 002. barton skyline.\na navy fine-line illustration of the austin skyline from barton springs pool, printed on the back. small STAK austin texas mark on the chest.\nbuilt for the in-between: a morning swim, then back downtown.\n30 made. short run and done.',
+    metaDescription:
+      'Barton Skyline Tee from STAK — a navy fine-line illustration of the Austin skyline from Barton Springs Pool, printed on ivory Comfort Colors cotton. Drop 002. 30 made.',
+    details: [
+      'Comfort Colors cotton',
+      'Navy fine-line back print',
+      'Small chest mark',
+      'Sizes S / M / L / XL',
+    ],
+    available: true,
+    variant: 'tee',
+    image: '/products/barton-skyline.jpg',
+    detailImage: '/products/barton-skyline-detail.jpg',
+    imageAlt: 'STAK Barton Skyline Tee in ivory with Austin skyline illustration',
+    pageTitle: 'Barton Skyline Tee — Drop 002 | STAK',
+    shopifyBuy: {
+      componentId: 'product-component-barton-skyline-002',
+      productId: '15475878822133',
+    },
+  },
+  {
     slug: 'drop-001-tee',
     name: 'Drop 001 Tee',
     price: 38,
     meta: 'Faded Grey · Heavyweight Cotton',
     badge: 'dropped',
+    drop: '001',
     tag: '01',
     description:
       'Our first run tee. A heavyweight garment dyed t shirt — 240gsm cotton, dyed in small batches for a lived-in fade from day one. Grid mark on the chest, broken in before you even put it on.',
@@ -54,6 +85,7 @@ export const products: Product[] = [
     name: 'Washed Dad Hat',
     price: 32,
     meta: 'Walnut · 6-Panel Cotton',
+    drop: '001',
     tag: '02',
     description:
       'A washed dad hat in soft 6-panel cotton, with an embroidered wordmark and an adjustable brass buckle. Unstructured, broken-in — the kind of cap you forget you\'re wearing.',
