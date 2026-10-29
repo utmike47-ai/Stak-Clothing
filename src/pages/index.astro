@@ -1,45 +1,50 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { products } from "../data/products";
+import { getFeaturedProduct } from "../data/products";
+
+const featured = getFeaturedProduct();
 ---
-<BaseLayout title="STAK — Austin Apparel | Heavyweight Tees & Limited Drops">
+<BaseLayout
+  title="STAK — Austin Apparel | Drop 002 Barton Skyline"
+  description="Drop 002 is live. Barton Skyline — navy fine-line ink on an ivory Comfort Colors tee. 30 made. Short run and done."
+>
 <main id="top">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
       <img
-        src="/skyline2.png"
-        srcset="/skyline2.png 1131w"
+        src="/products/barton-skyline.jpg"
+        srcset="/products/barton-skyline.jpg 1536w"
         sizes="100vw"
-        alt="Austin Texas skyline at golden hour from Lady Bird Lake"
+        alt="STAK Barton Skyline Tee — navy fine-line illustration of the Austin skyline on an ivory Comfort Colors tee"
         class="hero-image"
-        width="1131"
-        height="1391"
+        width="1536"
+        height="1024"
         fetchpriority="high"
         decoding="async"
       />
-      <div class="hero-overlay"></div>
+      <div class="hero-overlay hero-overlay-product"></div>
     </div>
 
     <div class="hero-content">
-      <p class="eyebrow fade-in">Drop 001 — Austin, Texas</p>
+      <p class="eyebrow fade-in">drop 002 — austin, texas</p>
       <h1 class="hero-title fade-in" style="--delay:.1s">
-        Style That<br/>Always Keeps.
+        Barton<br/>Skyline.
       </h1>
       <p class="hero-sub fade-in" style="--delay:.2s">
-        Austin-made essentials. Heavyweight cotton.<br/>
-        Limited drops.
+        navy fine-line ink on an ivory Comfort Colors tee.<br/>
+        30 made.
       </p>
       <div class="hero-cta fade-in" style="--delay:.3s">
-        <a href="/shop" class="btn btn-primary">Shop Drop 001</a>
+        <a href="/shop/barton-skyline" class="btn btn-primary">shop barton skyline</a>
         <a href="/story" class="btn btn-ghost">Our Story →</a>
       </div>
     </div>
 
     <div class="hero-meta">
-      <div><span class="meta-label">No.</span><span class="meta-value">001</span></div>
-      <div><span class="meta-label">Made</span><span class="meta-value meta-value-long">Short Run, and Done</span></div>
+      <div><span class="meta-label">No.</span><span class="meta-value">002</span></div>
+      <div><span class="meta-label">Made</span><span class="meta-value">30</span></div>
       <div><span class="meta-label">Est.</span><span class="meta-value">2026</span></div>
     </div>
 
@@ -111,26 +116,27 @@ import { products } from "../data/products";
   <section class="drop home-shop" id="drop">
     <div class="drop-header">
       <div>
-        <p class="eyebrow">Drop 001</p>
-        <h2 class="display">The First Run.</h2>
+        <p class="eyebrow">drop 002</p>
+        <h2 class="display">Barton Skyline.</h2>
       </div>
       <div class="drop-blurb-wrap">
         <p class="drop-blurb">
-          Two pieces. Short Run, and Done. Dyed in small batches in Texas — when they're gone, they're gone.
+          navy fine-line ink on an ivory Comfort Colors tee. 30 made. short run and done.
         </p>
         <p class="drop-blurb">
           a short run means every shirt gets more than inspected. it gets held up. turned over. tried on by someone in the room before it goes in the bag.
         </p>
+        <a href="/shop" class="link-underline">the rest of the shop →</a>
       </div>
     </div>
-    <div class="products" id="shop">
-      {products.map((product) => <ProductCard product={product} />)}
+    <div class="products products-featured" id="shop">
+      <ProductCard product={featured} />
     </div>
   </section>
 
   <!-- CLOSING CTA -->
   <section class="home-cta">
-    <a href="/shop" class="home-cta-link">shop the first run →</a>
+    <a href="/shop/barton-skyline" class="home-cta-link">shop barton skyline →</a>
   </section>
 </main>
 </BaseLayout>

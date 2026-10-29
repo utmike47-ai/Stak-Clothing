@@ -51,6 +51,6 @@ every piece has to earn its place. it has to be something you reach for without 
 
 the garment dyed tee was that for drop 001. it was the clearest expression of what we're trying to build. something that starts right and gets better from there.
 
-[drop 001 is live at stakclothing.com/shop](https://www.stakclothing.com/shop)
+[the drop 001 tee is in the shop](https://www.stakclothing.com/shop/drop-001-tee)
 
 small run. when it's gone, it's gone.
