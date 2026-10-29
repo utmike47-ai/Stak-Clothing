@@ -56,7 +56,6 @@ export const products: Product[] = [
     name: 'Drop 001 Tee',
     price: 38,
     meta: 'Faded Grey · Heavyweight Cotton',
-    badge: 'dropped',
     drop: '001',
     tag: '01',
     description:
@@ -114,6 +113,12 @@ export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
+export const FEATURED_PRODUCT_SLUG = 'barton-skyline';
+
+export function getFeaturedProduct(): Product {
+  return products.find((p) => p.slug === FEATURED_PRODUCT_SLUG) ?? products[0];
+}
+
 export interface JournalPost {
   slug: string;
   title: string;
@@ -159,7 +164,7 @@ export const journalPosts: JournalPost[] = [
       'structured caps make you look like you\'re headed somewhere specific. a soft, low, washed cap just looks like you. that fit what we\'re building.',
       'ours is walnut. soft cotton, brass buckle, the wordmark stitched small on the front. nothing loud.',
       'it\'s the hat we reach for. that was the whole test.',
-      '[the washed dad hat is live in drop 001](https://www.stakclothing.com/shop/washed-dad-hat)',
+      '[the washed dad hat is in the shop](https://www.stakclothing.com/shop/washed-dad-hat)',
       'short run. when it\'s gone, it\'s gone.',
     ],
   },
@@ -196,7 +201,7 @@ export const journalPosts: JournalPost[] = [
       'we also wanted to be honest about something: garment dyeing isn\'t a technique we\'re locked into. it\'s one approach, one that made sense for this shirt, at this moment. future drops might use different methods, different constructions, different finishes. what won\'t change is the standard we hold them to.',
       'every piece has to earn its place. it has to be something you reach for without thinking.',
       'the garment dyed tee was that for drop 001. it was the clearest expression of what we\'re trying to build. something that starts right and gets better from there.',
-      '[drop 001 is live at stakclothing.com/shop](https://www.stakclothing.com/shop)',
+      '[the drop 001 tee is in the shop](https://www.stakclothing.com/shop/drop-001-tee)',
       'small run. when it\'s gone, it\'s gone.',
     ],
   },

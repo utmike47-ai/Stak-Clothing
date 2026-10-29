@@ -6,7 +6,7 @@ Marketing site for STAK Supply Co. Built with [Astro](https://astro.build) for f
 
 | Route | Description |
 |-------|-------------|
-| `/` | Homepage — hero, story, Drop 001, editorial, journal preview |
+| `/` | Homepage — hero, story, Drop 002 Barton Skyline, editorial, journal preview |
 | `/shop` | Full product grid |
 | `/shop/[slug]` | Product detail pages |
 | `/field-notes` | Field Notes index |

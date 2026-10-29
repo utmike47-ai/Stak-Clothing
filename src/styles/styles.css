@@ -111,6 +111,7 @@ input { font-family: inherit; }
    ========================================================= */
 
 .announcement {
+  display: block;
   background: var(--charcoal);
   color: var(--bone);
   padding: 10px 0;
@@ -119,6 +120,14 @@ input { font-family: inherit; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 500;
+  cursor: pointer;
+}
+.announcement:hover {
+  color: var(--bone);
+}
+.announcement:focus-visible {
+  outline: 1px solid var(--bone-dim);
+  outline-offset: -2px;
 }
 .marquee {
   display: flex;
@@ -277,7 +286,7 @@ input { font-family: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center;
   display: block;
 }
 .hero-overlay {
@@ -287,6 +296,11 @@ input { font-family: inherit; }
     linear-gradient(180deg, rgba(17, 18, 19, 0.35) 0%, rgba(17, 18, 19, 0.15) 40%, rgba(17, 18, 19, 0.55) 100%),
     linear-gradient(90deg, rgba(17, 18, 19, 0.45) 0%, transparent 55%);
   pointer-events: none;
+}
+.hero-overlay-product {
+  background:
+    linear-gradient(180deg, rgba(17, 18, 19, 0.22) 0%, rgba(17, 18, 19, 0.18) 38%, rgba(17, 18, 19, 0.78) 100%),
+    linear-gradient(90deg, rgba(17, 18, 19, 0.38) 0%, transparent 58%);
 }
 
 .hero-content {
@@ -591,6 +605,7 @@ input { font-family: inherit; }
 .drop-header .display { margin-top: 18px; }
 .drop-blurb-wrap { max-width: 440px; }
 .drop-blurb-wrap .drop-blurb + .drop-blurb { margin-top: 1em; }
+.drop-blurb-wrap .link-underline { margin-top: 20px; }
 .drop-blurb {
   font-family: var(--font-display);
   font-size: 1.1rem;
@@ -608,6 +623,12 @@ input { font-family: inherit; }
   gap: 40px;
   max-width: 960px;
   align-items: start;
+}
+.products-featured {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 520px;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .product {
@@ -1286,6 +1307,7 @@ input { font-family: inherit; }
   .story-grid { grid-template-columns: 1fr; gap: 60px; }
   .drop-header { grid-template-columns: 1fr; gap: 24px; }
   .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 960px; }
+  .products-featured { grid-template-columns: minmax(0, 1fr); max-width: 520px; }
   .editorial-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: 320px 320px 320px; }
   .ed-card-tall { grid-row: span 1; }
   .pillars-grid, .journal-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1304,7 +1326,7 @@ input { font-family: inherit; }
   .nav-logo-wordmark { font-size: 1.65rem; }
 
   .hero { min-height: 88vh; padding: 80px 20px 40px; }
-  .hero-image { object-position: center 38%; width: 100%; height: 100%; object-fit: cover; }
+  .hero-image { object-position: center; width: 100%; height: 100%; object-fit: cover; }
   .hero-title { font-size: clamp(2.4rem, 14vw, 3.5rem); line-height: 0.98; }
   .hero-sub { font-size: 1.05rem; max-width: 100%; }
   .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
